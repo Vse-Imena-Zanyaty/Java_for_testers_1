@@ -7,7 +7,7 @@ public class Lecture03 {
     hello("Olga!");
     hello("user!");
 
-    Square s = new Square(5);
+    Square s = new Square(5.0);
     System.out.println("Area of square with sides " + s.a + " = " + s.area());
 
     Rectangle r = new Rectangle(4, 6);
