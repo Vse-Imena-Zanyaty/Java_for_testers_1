@@ -7,24 +7,19 @@ public class Lecture03 {
     hello("Olga!");
     hello("user!");
 
-    double c = 5;
-    System.out.println("Area of square with sides " + c + " = " + area(c));
+    Square s = new Square(5);
+    System.out.println("Area of square with sides " + s.a + " = " + s.area());
 
-    double d = 4;
-    double e = 6;
-    System.out.println("Area of rectangle with sides " + d + " and " + e + " = " + area(d, e));
+    Rectangle r = new Rectangle(4, 6);
+    System.out.println("Area of rectangle with sides " + r.a + " and " + r.b + " = " + r.area());
+
+    Point p1 = new Point(-4, 8);
+    Point p2 = new Point(22, -7);
+    System.out.println("Distance between points p1 and p2 = " + p1.distance(p2));
   }
 
   public static void hello(String a) {
     System.out.println("Hello, " + a);
-  }
-
-  public static double area(double b) {
-    return b * b;
-  }
-
-  public static double area(double d, double e) {
-    return d * e;
   }
 
 }
