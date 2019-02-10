@@ -17,8 +17,14 @@ public class NavigationMethods extends BasicMethods {
     click(By.linkText("home page"));
   }
 
+  public void goHome() {
+    click(By.linkText("home"));
+  }
+
   public void gotoContactCreation() {
     click(By.linkText("add new"));
   }
 
+  public void gotoEditContact() {click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='import'])[1]/following::img[2]"));
+  }
 }

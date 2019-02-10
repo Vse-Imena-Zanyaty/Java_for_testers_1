@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class GroupDeletion extends CommonMethods {
 
   @Test
-  public void testGroupDeletion() throws Exception {
+  public void testGroupDeletion() {
     app.getNavigationMethods().gotoGroupPage();
     app.getGroupMethods().selectGroup();
     app.getGroupMethods().initGroupDeletion();
