@@ -9,12 +9,12 @@ public class CommonMethods {
   public final AppManager app = new AppManager();
 
   @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void setUp() {
     app.init();
   }
 
   @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void tearDown() {
     app.getSessionMethods().stop();
   }
 
