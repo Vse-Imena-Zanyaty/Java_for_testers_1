@@ -1,4 +1,4 @@
-package Lecture22.addressbook;
+package Lecture22.addressbook.objects;
 
 public class Group {
   private final String name;

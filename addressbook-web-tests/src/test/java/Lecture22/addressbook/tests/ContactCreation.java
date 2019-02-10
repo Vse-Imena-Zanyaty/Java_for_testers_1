@@ -1,13 +1,14 @@
-package Lecture22.addressbook;
+package Lecture22.addressbook.tests;
 
 import java.util.concurrent.TimeUnit;
 
+import Lecture22.addressbook.objects.Contact;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 
-public class ContactCreation {
+public class ContactCreation extends CommonMethods {
   private ChromeDriver wd;
 
   @BeforeMethod(alwaysRun = true)
