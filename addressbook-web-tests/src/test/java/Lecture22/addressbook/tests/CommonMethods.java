@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class CommonMethods {
 
-  protected final AppManager app = new AppManager();
+  public final AppManager app = new AppManager();
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
@@ -15,7 +15,7 @@ public class CommonMethods {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
-    app.stop();
+    app.getSessionMethods().stop();
   }
 
 }

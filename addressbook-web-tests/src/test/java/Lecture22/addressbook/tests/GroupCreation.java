@@ -7,7 +7,7 @@ public class GroupCreation extends CommonMethods {
 
   @Test
   public void testGroupCreation() throws Exception {
-    app.gotoGroupPage();
+    app.getNavigationMethods().gotoGroupPage();
     app.getGroupMethods().initGroupCreation();
     app.getGroupMethods().fillGroupForm(new Group("group1", "header1", "comment1"));
     app.getGroupMethods().submitGroupCreation();

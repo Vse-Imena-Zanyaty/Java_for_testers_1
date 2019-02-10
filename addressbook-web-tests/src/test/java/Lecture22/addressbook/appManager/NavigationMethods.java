@@ -12,4 +12,13 @@ public class NavigationMethods extends BasicMethods {
   public void gotoGroupPage() {
     click(By.linkText("groups"));
   }
+
+  public void gotoHomePage() {
+    click(By.linkText("home page"));
+  }
+
+  public void gotoContactCreation() {
+    click(By.linkText("add new"));
+  }
+
 }

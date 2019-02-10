@@ -10,6 +10,7 @@ public class AppManager {
   private SessionMethods sessionMethods;
   private NavigationMethods navigationMethods;
   private GroupMethods groupMethods;
+  private ContactMethods contactMethods;
 
   public void init() {
     System.setProperty("webdriver.chrome.wd", "C:/Windows/System32/chromedriver.exe");
@@ -19,6 +20,7 @@ public class AppManager {
     sessionMethods = new SessionMethods(wd);
     navigationMethods = new NavigationMethods(wd);
     groupMethods = new GroupMethods(wd);
+    contactMethods = new ContactMethods(wd);
     sessionMethods.login("admin", "secret");
   }
 
@@ -26,19 +28,15 @@ public class AppManager {
     return sessionMethods;
   }
 
-  public void stop() {
-    sessionMethods.stop();
-  }
-
   public NavigationMethods getNavigationMethods() {
     return navigationMethods;
   }
 
-  public void gotoGroupPage() {
-    navigationMethods.gotoGroupPage();
-  }
-
   public GroupMethods getGroupMethods() {
   return groupMethods;
+  }
+
+  public ContactMethods getContactMethods() {
+    return contactMethods;
   }
 }
