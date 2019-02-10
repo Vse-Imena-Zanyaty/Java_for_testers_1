@@ -35,4 +35,8 @@ public class GroupMethods extends BasicMethods {
   public void selectGroup() {
     click(By.name("selected[]"));
   }
+
+  public void initEditGroup() { click(By.name("edit")); }
+
+  public void submitEditGroup() {click(By.name("update")); }
 }
