@@ -19,7 +19,7 @@ public class ContactMethods extends BasicMethods {
 
   public void submitEditContact() {click(By.name("update")); }
 
-  public void deleteContact() {click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]")); }
+  public void deleteContact() {click(By.xpath("//input[@value='Delete']")); }
 
   public void acceptAlert() {wd.switchTo().alert().accept(); }
 

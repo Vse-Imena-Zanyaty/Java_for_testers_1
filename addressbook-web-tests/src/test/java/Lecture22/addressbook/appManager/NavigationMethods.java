@@ -25,6 +25,6 @@ public class NavigationMethods extends BasicMethods {
     click(By.linkText("add new"));
   }
 
-  public void gotoEditContact() {click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='import'])[1]/following::img[2]"));
+  public void gotoEditContact() {click(By.xpath("//img[@alt='Edit']"));
   }
 }
