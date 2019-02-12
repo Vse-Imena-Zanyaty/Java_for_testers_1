@@ -53,44 +53,9 @@ public class ContactMethods extends BasicMethods {
     new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contact.getAnniversaryMonth());
     click(By.name("amonth"));
     type(By.name("ayear"), contact.getAnniversaryYear());
-    click(By.name("new_group"));
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getContactGroup());
-    click(By.name("new_group"));
-    type(By.name("address2"), contact.getSecondaryAddress());
-    type(By.name("phone2"), contact.getSecondaryHome());
-    type(By.name("notes"), contact.getSecondaryNotes());
-  }
-
-  public void editContactForm(Contact contact) {
-    type(By.name("firstname"), contact.getFirstName());
-    type(By.name("middlename"), contact.getMiddleName());
-    type(By.name("lastname"), contact.getLastName());
-    type(By.name("nickname"), contact.getNickname());
-    type(By.name("title"), contact.getTitle());
-    type(By.name("company"), contact.getCompany());
-    type(By.name("address"), contact.getAddress());
-    type(By.name("home"), contact.getNumberHome());
-    type(By.name("mobile"), contact.getNumberMobile());
-    type(By.name("work"), contact.getNumberWork());
-    type(By.name("fax"), contact.getNumberFax());
-    type(By.name("email"), contact.getEmail_1());
-    type(By.name("email2"), contact.getEmail_2());
-    type(By.name("email3"), contact.getEmail_3());
-    type(By.name("homepage"), contact.getContactHomePage());
-    click(By.name("bday"));
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contact.getBirthDate());
-    click(By.name("bday"));
-    click(By.name("bmonth"));
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contact.getBirthMonth());
-    click(By.name("bmonth"));
-    type(By.name("byear"), contact.getBirthYear());
-    click(By.name("aday"));
-    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(contact.getAnniversaryDay());
-    click(By.name("aday"));
-    click(By.name("amonth"));
-    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contact.getAnniversaryMonth());
-    click(By.name("amonth"));
-    type(By.name("ayear"), contact.getAnniversaryYear());
+    //click(By.name("new_group"));
+    //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getContactGroup());
+    //click(By.name("new_group"));
     type(By.name("address2"), contact.getSecondaryAddress());
     type(By.name("phone2"), contact.getSecondaryHome());
     type(By.name("notes"), contact.getSecondaryNotes());
