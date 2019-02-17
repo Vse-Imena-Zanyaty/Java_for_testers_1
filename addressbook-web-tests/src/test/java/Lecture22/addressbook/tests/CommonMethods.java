@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class CommonMethods {
 
-  public final AppManager app = new AppManager(BrowserType.FIREFOX);
+  public final AppManager app = new AppManager(BrowserType.CHROME);
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() {
