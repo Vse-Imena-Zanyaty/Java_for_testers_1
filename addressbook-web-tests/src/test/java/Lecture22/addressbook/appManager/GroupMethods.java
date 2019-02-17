@@ -2,11 +2,12 @@ package Lecture22.addressbook.appManager;
 
 import Lecture22.addressbook.objects.Group;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GroupMethods extends BasicMethods {
 
-  public GroupMethods(ChromeDriver wd) {
+  public GroupMethods(WebDriver wd) {
     super(wd);
   }
 

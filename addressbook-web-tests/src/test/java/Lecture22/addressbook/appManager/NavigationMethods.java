@@ -1,11 +1,12 @@
 package Lecture22.addressbook.appManager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class NavigationMethods extends BasicMethods {
 
-  public NavigationMethods(ChromeDriver wd) {
+  public NavigationMethods(WebDriver wd) {
     super(wd);
   }
 

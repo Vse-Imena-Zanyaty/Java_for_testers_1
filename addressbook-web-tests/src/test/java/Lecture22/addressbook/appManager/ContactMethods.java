@@ -2,12 +2,13 @@ package Lecture22.addressbook.appManager;
 
 import Lecture22.addressbook.objects.Contact;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class ContactMethods extends BasicMethods {
 
-  public ContactMethods(ChromeDriver wd) {
+  public ContactMethods(WebDriver wd) {
     super(wd);
   }
 
