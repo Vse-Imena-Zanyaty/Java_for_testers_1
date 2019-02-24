@@ -3,7 +3,6 @@ package Lecture22.addressbook.appManager;
 import Lecture22.addressbook.objects.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GroupMethods extends BasicMethods {
 
@@ -40,4 +39,16 @@ public class GroupMethods extends BasicMethods {
   public void initEditGroup() { click(By.name("edit")); }
 
   public void submitEditGroup() {click(By.name("update")); }
+
+  public void createGroup(Group group, AppManager app) {
+    app.getNavigationMethods().gotoGroupPage();
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnToGroupPage();
+  }
+
+  public boolean existingGroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
 }

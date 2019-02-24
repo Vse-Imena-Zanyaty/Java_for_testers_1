@@ -32,7 +32,7 @@ public class AppManager {
       System.setProperty("webdriver.IE.wd", "C:/Windows/System32/IEDriverServer.exe");
       wd = new InternetExplorerDriver();
     }
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     sessionMethods = new SessionMethods(wd);
     navigationMethods = new NavigationMethods(wd);

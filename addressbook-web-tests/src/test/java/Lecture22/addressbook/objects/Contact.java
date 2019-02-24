@@ -22,7 +22,7 @@ public class Contact {
   private final String anniversaryDay;
   private final String anniversaryMonth;
   private final String anniversaryYear;
-  //private final String contactGroup;
+  private final String contactGroup;
   private final String secondaryAddress;
   private final String secondaryHome;
   private final String secondaryNotes;
@@ -49,7 +49,7 @@ public class Contact {
     this.anniversaryDay = anniversaryDay;
     this.anniversaryMonth = anniversaryMonth;
     this.anniversaryYear = anniversaryYear;
-    // this.contactGroup = contactGroup;
+    this.contactGroup = contactGroup;
     this.secondaryAddress = secondaryAddress;
     this.secondaryHome = secondaryHome;
     this.secondaryNotes = secondaryNotes;
@@ -139,7 +139,7 @@ public class Contact {
     return anniversaryYear;
   }
 
-//  public String getContactGroup() { return contactGroup; }
+  public String getContactGroup() { return contactGroup; }
 
   public String getSecondaryAddress() {
     return secondaryAddress;
