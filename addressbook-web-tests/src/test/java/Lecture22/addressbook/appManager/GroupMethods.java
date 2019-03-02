@@ -3,6 +3,10 @@ package Lecture22.addressbook.appManager;
 import Lecture22.addressbook.objects.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupMethods extends BasicMethods {
 
@@ -32,13 +36,17 @@ public class GroupMethods extends BasicMethods {
     click(By.name("delete"));
   }
 
-  public void selectGroup() {
-    click(By.name("selected[]"));
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initEditGroup() { click(By.name("edit")); }
+  public void initEditGroup() {
+    click(By.name("edit"));
+  }
 
-  public void submitEditGroup() {click(By.name("update")); }
+  public void submitEditGroup() {
+    click(By.name("update"));
+  }
 
   public void createGroup(Group group, AppManager app) {
     app.getNavigationMethods().gotoGroupPage();
@@ -54,5 +62,17 @@ public class GroupMethods extends BasicMethods {
 
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<Group> getGroupList() {
+    List<Group> groups = new ArrayList<Group>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      Group group = new Group(ID, name, null, null);
+      groups.add(group);
+    }
+    return groups;
   }
 }

@@ -60,7 +60,7 @@ public class ContactMethods extends BasicMethods {
   public void createContact(Contact contact, AppManager app) {
     app.getNavigationMethods().gotoGroupPage();
     if (! app.getGroupMethods().existingGroup()) {
-      app.getGroupMethods().createGroup(new Group("name", "header", "footer"), app);
+      app.getGroupMethods().createGroup(new Group(0,"name", "header", "footer"), app);
     }
     app.getNavigationMethods().gotoContactCreation();
     fillContactForm(contact, true);
