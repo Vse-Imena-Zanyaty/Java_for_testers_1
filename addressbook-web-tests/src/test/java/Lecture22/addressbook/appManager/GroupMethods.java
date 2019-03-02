@@ -51,4 +51,8 @@ public class GroupMethods extends BasicMethods {
   public boolean existingGroup() {
     return isElementPresent(By.name("selected[]"));
   }
+
+  public int getGroupCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }

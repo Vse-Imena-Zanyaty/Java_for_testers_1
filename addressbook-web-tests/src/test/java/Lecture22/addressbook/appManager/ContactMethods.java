@@ -57,13 +57,13 @@ public class ContactMethods extends BasicMethods {
     type(By.name("notes"), contact.getSecondaryNotes());
   }
 
-  public void createContact(AppManager app) {
+  public void createContact(Contact contact, AppManager app) {
     app.getNavigationMethods().gotoGroupPage();
     if (! app.getGroupMethods().existingGroup()) {
-      app.getGroupMethods().createGroup(new Group("group1", "header1", "comment1"), app);
+      app.getGroupMethods().createGroup(new Group("name", "header", "footer"), app);
     }
     app.getNavigationMethods().gotoContactCreation();
-    fillContactForm(new Contact("first_name", "middle_name", "last_name", "nickname", "title", "company", "address", "+7 999 222 55 77", "+3240234934203", "83247239432432", "08435735435000", "email1@email.com", "email2@email.com", "new", "vkontakte.com", "1", "January", "1111", "1", "January", "2222", "group1", "secondary_address", "secondary_home", "secondary_notes"), true);
+    fillContactForm(contact, true);
     submitContactCreation();
     app.getNavigationMethods().gotoHomePage();
   }
