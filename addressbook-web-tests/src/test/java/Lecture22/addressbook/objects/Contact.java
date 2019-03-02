@@ -1,6 +1,14 @@
 package Lecture22.addressbook.objects;
 
+import java.util.Objects;
+
 public class Contact {
+
+  public void setID(int ID) {
+    this.ID = ID;
+  }
+
+  private int ID;
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -28,6 +36,7 @@ public class Contact {
   private final String secondaryNotes;
 
   public Contact(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String numberHome, String numberMobile, String numberWork, String numberFax, String email_1, String email_2, String email_3, String contactHomePage, String birthDate, String birthMonth, String birthYear, String anniversaryDay, String anniversaryMonth, String anniversaryYear, String contactGroup, String secondaryAddress, String secondaryHome, String secondaryNotes) {
+    this.ID = Integer.MAX_VALUE;
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -53,6 +62,10 @@ public class Contact {
     this.secondaryAddress = secondaryAddress;
     this.secondaryHome = secondaryHome;
     this.secondaryNotes = secondaryNotes;
+  }
+
+  public int getID() {
+    return ID;
   }
 
   public String getFirstName() {
@@ -139,7 +152,9 @@ public class Contact {
     return anniversaryYear;
   }
 
-  public String getContactGroup() { return contactGroup; }
+  public String getContactGroup() {
+    return contactGroup;
+  }
 
   public String getSecondaryAddress() {
     return secondaryAddress;
@@ -151,5 +166,28 @@ public class Contact {
 
   public String getSecondaryNotes() {
     return secondaryNotes;
+  }
+
+  @Override
+  public String toString() {
+    return "Contact{" +
+            "ID=" + ID +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Contact contact = (Contact) o;
+    return Objects.equals(firstName, contact.firstName) &&
+            Objects.equals(lastName, contact.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(firstName, lastName);
   }
 }

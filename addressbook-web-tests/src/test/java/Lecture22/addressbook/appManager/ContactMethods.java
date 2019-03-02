@@ -4,8 +4,12 @@ import Lecture22.addressbook.objects.Contact;
 import Lecture22.addressbook.objects.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactMethods extends BasicMethods {
 
@@ -17,13 +21,23 @@ public class ContactMethods extends BasicMethods {
     click(By.name("submit"));
   }
 
-  public void selectContact() {click(By.name("selected[]")); }
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
 
-  public void submitEditContact() {click(By.name("update")); }
+//  public void selectContact() {click(By.name("selected[]")); }
 
-  public void deleteContact() {click(By.xpath("//input[@value='Delete']")); }
+  public void submitEditContact() {
+    click(By.name("update"));
+  }
 
-  public void acceptAlert() {wd.switchTo().alert().accept(); }
+  public void deleteContact() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void acceptAlert() {
+    wd.switchTo().alert().accept();
+  }
 
   public void fillContactForm(Contact contact, boolean creation) {
     type(By.name("firstname"), contact.getFirstName());
@@ -59,7 +73,7 @@ public class ContactMethods extends BasicMethods {
 
   public void createContact(Contact contact, AppManager app) {
     app.getNavigationMethods().gotoGroupPage();
-    if (! app.getGroupMethods().existingGroup()) {
+    if (!app.getGroupMethods().existingGroup()) {
       app.getGroupMethods().createGroup(new Group("name", "header", "footer"), app);
     }
     app.getNavigationMethods().gotoContactCreation();
@@ -70,5 +84,18 @@ public class ContactMethods extends BasicMethods {
 
   public boolean existingContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public List<Contact> getContactList() {
+    List<Contact> contacts = new ArrayList<Contact>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=\"entry\"]"));
+    for (WebElement element : elements) {
+      String firstName = element.findElement(By.cssSelector("tr[name=\"entry\"] > td:nth-child(3)")).getText();
+      String lastName = element.findElement(By.cssSelector("tr[name=\"entry\"] > td:nth-child(2)")).getText();
+      int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      Contact contact = new Contact(firstName, null, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }

@@ -14,7 +14,7 @@ public class GroupCreation extends CommonMethods {
     app.getNavigationMethods().gotoGroupPage();
     List<Group> before = app.getGroupMethods().getGroupList();
 //    int before = app.getGroupMethods().getGroupCount();
-    Group group = new Group("new2", "header", "footer");
+    Group group = new Group("name", "header", "footer");
     app.getGroupMethods().createGroup(group, app);
     List<Group> after = app.getGroupMethods().getGroupList();
 //    int after = app.getGroupMethods().getGroupCount();

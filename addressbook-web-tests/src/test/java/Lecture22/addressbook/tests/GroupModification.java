@@ -33,6 +33,6 @@ public class GroupModification extends CommonMethods {
 //    Comparator<? super Group> byID = (g1, g2) -> Integer.compare(g1.getID(), g2.getID());
     before.sort(byID);
     after.sort(byID);
-    Assert.assertNotEquals(before, after);
+    Assert.assertEquals(before, after);
   }
 }
