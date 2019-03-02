@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreation extends CommonMethods {
@@ -15,7 +14,7 @@ public class GroupCreation extends CommonMethods {
     app.getNavigationMethods().gotoGroupPage();
     List<Group> before = app.getGroupMethods().getGroupList();
 //    int before = app.getGroupMethods().getGroupCount();
-    Group group = new Group(0, "new2", "header", "footer");
+    Group group = new Group("new2", "header", "footer");
     app.getGroupMethods().createGroup(group, app);
     List<Group> after = app.getGroupMethods().getGroupList();
 //    int after = app.getGroupMethods().getGroupCount();
@@ -24,6 +23,9 @@ public class GroupCreation extends CommonMethods {
     group.setID(after.stream().max(Comparator.comparingInt(Group::getID)).get().getID());
 //    group.setID(after.stream().max((o1, o2) -> Integer.compare(o1.getID(),o2.getID())).get().getID());
     before.add(group);
-    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
+    Comparator<? super Group> byID = Comparator.comparingInt(Group::getID);
+    before.sort(byID);
+    after.sort(byID);
+    Assert.assertEquals(before, after);
   }
 }

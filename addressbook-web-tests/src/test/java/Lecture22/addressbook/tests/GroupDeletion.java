@@ -4,6 +4,7 @@ import Lecture22.addressbook.objects.Group;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class GroupDeletion extends CommonMethods {
@@ -12,7 +13,7 @@ public class GroupDeletion extends CommonMethods {
   public void testGroupDeletion() {
     app.getNavigationMethods().gotoGroupPage();
     if (!app.getGroupMethods().existingGroup()) {
-      app.getGroupMethods().createGroup(new Group(0, "name", "header", "footer"), app);
+      app.getGroupMethods().createGroup(new Group("name", "header", "footer"), app);
     }
     List<Group> before = app.getGroupMethods().getGroupList();
 //    int before = app.getGroupMethods().getGroupCount();
@@ -25,6 +26,10 @@ public class GroupDeletion extends CommonMethods {
 
     before.remove(before.size() - 1);
 //    for (int i = 0; i < after.size(); i++) {
+    Comparator<? super Group> byID = Comparator.comparingInt(Group::getID);
+//    Comparator<? super Group> byID = (g1, g2) -> Integer.compare(g1.getID(), g2.getID());
+    before.sort(byID);
+    after.sort(byID);
     Assert.assertEquals(before, after);
   }
 }

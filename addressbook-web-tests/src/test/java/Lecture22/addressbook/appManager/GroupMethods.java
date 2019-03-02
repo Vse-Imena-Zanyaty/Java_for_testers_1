@@ -70,7 +70,7 @@ public class GroupMethods extends BasicMethods {
     for (WebElement element : elements) {
       String name = element.getText();
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      Group group = new Group(ID, name, null, null);
+      Group group = new Group(name, null, null);
       groups.add(group);
     }
     return groups;

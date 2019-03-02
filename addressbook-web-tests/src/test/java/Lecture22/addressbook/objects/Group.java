@@ -3,6 +3,7 @@ package Lecture22.addressbook.objects;
 import java.util.Objects;
 
 public class Group {
+
   public void setID(int ID) {
     this.ID = ID;
   }
@@ -12,8 +13,8 @@ public class Group {
   private final String header;
   private final String footer;
 
-  public Group(int ID, String name, String header, String footer) {
-    this.ID = ID;
+  public Group(String name, String header, String footer) {
+    this.ID = Integer.MAX_VALUE;
     this.name = name;
     this.header = header;
     this.footer = footer;
@@ -48,12 +49,11 @@ public class Group {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Group group = (Group) o;
-    return ID == group.ID &&
-            Objects.equals(name, group.name);
+    return Objects.equals(name, group.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ID, name);
+    return Objects.hash(name);
   }
 }
