@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.util.HashSet;
 import java.util.List;
 
-public class EditGroup extends CommonMethods {
+public class GroupModification extends CommonMethods {
 
   @Test
   public void testEditGroup() {

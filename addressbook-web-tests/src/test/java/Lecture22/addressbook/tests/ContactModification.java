@@ -3,7 +3,7 @@ package Lecture22.addressbook.tests;
 import Lecture22.addressbook.objects.Contact;
 import org.testng.annotations.Test;
 
-public class EditContact extends CommonMethods {
+public class ContactModification extends CommonMethods {
 
   @Test
   public void testEditContact() {
