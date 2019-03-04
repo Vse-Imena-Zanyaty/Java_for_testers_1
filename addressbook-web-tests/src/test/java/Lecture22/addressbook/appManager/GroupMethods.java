@@ -56,8 +56,15 @@ public class GroupMethods extends BasicMethods {
     returnToGroupPage();
   }
 
-  public boolean existingGroup() {
-    return isElementPresent(By.name("selected[]"));
+//  public boolean existingGroup() {
+//    return isElementPresent(By.name("selected[]"));
+//  }
+
+  public void existingGroup(AppManager app) {
+    app.getNavigationMethods().gotoGroupPage();
+    if (!isElementPresent(By.name("selected[]"))) {
+      createGroup(new Group("name", "header", "footer"), app);
+    }
   }
 
   public int getGroupCount() {

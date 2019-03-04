@@ -11,10 +11,7 @@ public class GroupModification extends CommonMethods {
 
   @Test
   public void testEditGroup() {
-    app.getNavigationMethods().gotoGroupPage();
-    if (!app.getGroupMethods().existingGroup()) {
-      app.getGroupMethods().createGroup(new Group("name", "header", "footer"), app);
-    }
+    app.getGroupMethods().existingGroup(app);
     List<Group> before = app.getGroupMethods().getGroupList();
 //    int before = app.getGroupMethods().getGroupCount();
     app.getGroupMethods().selectGroup(0);

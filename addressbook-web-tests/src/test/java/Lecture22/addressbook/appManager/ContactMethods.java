@@ -1,7 +1,6 @@
 package Lecture22.addressbook.appManager;
 
 import Lecture22.addressbook.objects.Contact;
-import Lecture22.addressbook.objects.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -73,9 +72,7 @@ public class ContactMethods extends BasicMethods {
 
   public void createContact(Contact contact, AppManager app) {
     app.getNavigationMethods().gotoGroupPage();
-    if (!app.getGroupMethods().existingGroup()) {
-      app.getGroupMethods().createGroup(new Group("name", "header", "footer"), app);
-    }
+    app.getGroupMethods().existingGroup(app);
     app.getNavigationMethods().gotoContactCreation();
     fillContactForm(contact, true);
     submitContactCreation();
@@ -90,10 +87,10 @@ public class ContactMethods extends BasicMethods {
     List<Contact> contacts = new ArrayList<Contact>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=\"entry\"]"));
     for (WebElement element : elements) {
-      String firstName = element.findElement(By.cssSelector("tr[name=\"entry\"] > td:nth-child(3)")).getText();
-      String lastName = element.findElement(By.cssSelector("tr[name=\"entry\"] > td:nth-child(2)")).getText();
+      String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      Contact contact = new Contact(firstName, null, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+      Contact contact = new Contact(firstName, lastName);
       contacts.add(contact);
     }
     return contacts;

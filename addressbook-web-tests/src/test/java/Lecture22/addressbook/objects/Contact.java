@@ -64,6 +64,35 @@ public class Contact {
     this.secondaryNotes = secondaryNotes;
   }
 
+  public Contact(String firstName, String lastName) {
+    this.ID = Integer.MAX_VALUE;
+    this.firstName = firstName;
+    this.middleName = null;
+    this.lastName = lastName;
+    this.nickname = null;
+    this.title = null;
+    this.company = null;
+    this.address = null;
+    this.numberHome = null;
+    this.numberMobile = null;
+    this.numberWork = null;
+    this.numberFax = null;
+    this.email_1 = null;
+    this.email_2 = null;
+    this.email_3 = null;
+    this.contactHomePage = null;
+    this.birthDate = null;
+    this.birthMonth = null;
+    this.birthYear = null;
+    this.anniversaryDay = null;
+    this.anniversaryMonth = null;
+    this.anniversaryYear = null;
+    this.contactGroup = null;
+    this.secondaryAddress = null;
+    this.secondaryHome = null;
+    this.secondaryNotes = null;
+  }
+
   public int getID() {
     return ID;
   }
