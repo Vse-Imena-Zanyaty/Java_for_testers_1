@@ -45,15 +45,15 @@ public class AppManager {
     return sessionMethods;
   }
 
-  public NavigationMethods getNavigationMethods() {
+  public NavigationMethods goTo() {
     return navigationMethods;
   }
 
-  public GroupMethods getGroupMethods() {
+  public GroupMethods groupMethods() {
   return groupMethods;
   }
 
-  public ContactMethods getContactMethods() {
+  public ContactMethods contactMethods() {
     return contactMethods;
   }
 }

@@ -16,21 +16,21 @@ public class ContactMethods extends BasicMethods {
     super(wd);
   }
 
-  public void submitContactCreation() {
+  public void submitCreation() {
     click(By.name("submit"));
   }
 
-  public void selectContact(int index) {
+  public void select(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-//  public void selectContact() {click(By.name("selected[]")); }
+//  public void select() {click(By.name("selected[]")); }
 
-  public void submitEditContact() {
+  public void submitModification() {
     click(By.name("update"));
   }
 
-  public void deleteContact() {
+  public void initDeletion() {
     click(By.xpath("//input[@value='Delete']"));
   }
 
@@ -38,7 +38,7 @@ public class ContactMethods extends BasicMethods {
     wd.switchTo().alert().accept();
   }
 
-  public void fillContactForm(Contact contact, boolean creation) {
+  public void fillForm(Contact contact, boolean creation) {
     type(By.name("firstname"), contact.getFirstName());
     type(By.name("middlename"), contact.getMiddleName());
     type(By.name("lastname"), contact.getLastName());
@@ -53,7 +53,7 @@ public class ContactMethods extends BasicMethods {
     type(By.name("email"), contact.getEmail_1());
     type(By.name("email2"), contact.getEmail_2());
     type(By.name("email3"), contact.getEmail_3());
-    type(By.name("homepage"), contact.getContactHomePage());
+    type(By.name("homepage"), contact.getInternet_page());
     new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contact.getBirthDate());
     new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contact.getBirthMonth());
     type(By.name("byear"), contact.getBirthYear());
@@ -70,20 +70,34 @@ public class ContactMethods extends BasicMethods {
     type(By.name("notes"), contact.getSecondaryNotes());
   }
 
-  public void createContact(Contact contact, AppManager app) {
-    app.getNavigationMethods().gotoGroupPage();
-    app.getGroupMethods().existingGroup(app);
-    app.getNavigationMethods().gotoContactCreation();
-    fillContactForm(contact, true);
-    submitContactCreation();
-    app.getNavigationMethods().gotoHomePage();
+  public void create(Contact contact, AppManager app) {
+    app.goTo().contactCreationPage();
+    fillForm(contact, true);
+    submitCreation();
+    app.goTo().returnHome();
   }
 
-  public boolean existingContact() {
-    return isElementPresent(By.name("selected[]"));
+  public void modify(int index, Contact contact, AppManager app) {
+    app.goTo().contactModificationPage(index);
+    fillForm(contact, false);
+    submitModification();
+    app.goTo().returnHome();
   }
 
-  public List<Contact> getContactList() {
+  public void delete(int index, AppManager app) {
+    select(index);
+    initDeletion();
+    acceptAlert();
+    app.goTo().homePage();
+  }
+
+  public void contactExists(AppManager app) {
+    if (list().size() == 0) {
+      create(new Contact("first_name", "middle_name", "last_name", "nickname", "title", "company", "address", "+7 999 222 55 77", "+3240234934203", "83247239432432", "08435735435000", "email1@email.com", "email2@email.com", "new", "vkontakte.com", "1", "January", "1111", "1", "January", "2222", "[none]", "secondary_address", "secondary_home", "secondary_notes"), app);
+    }
+  }
+
+  public List<Contact> list() {
     List<Contact> contacts = new ArrayList<Contact>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=\"entry\"]"));
     for (WebElement element : elements) {

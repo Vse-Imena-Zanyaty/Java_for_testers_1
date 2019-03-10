@@ -11,13 +11,13 @@ public class GroupCreation extends CommonMethods {
 
   @Test
   public void testGroupCreation() {
-    app.getNavigationMethods().gotoGroupPage();
-    List<Group> before = app.getGroupMethods().getGroupList();
-//    int before = app.getGroupMethods().getGroupCount();
+    app.goTo().GroupPage();
+    List<Group> before = app.groupMethods().list();
+//    int before = app.groupMethods().getGroupCount();
     Group group = new Group("name", "header", "footer");
-    app.getGroupMethods().createGroup(group, app);
-    List<Group> after = app.getGroupMethods().getGroupList();
-//    int after = app.getGroupMethods().getGroupCount();
+    app.groupMethods().create(group, app);
+    List<Group> after = app.groupMethods().list();
+//    int after = app.groupMethods().getGroupCount();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     group.setID(after.stream().max(Comparator.comparingInt(Group::getID)).get().getID());

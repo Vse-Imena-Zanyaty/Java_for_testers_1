@@ -18,52 +18,66 @@ public class GroupMethods extends BasicMethods {
     click(By.linkText("group page"));
   }
 
-  public void submitGroupCreation() {
+  public void submitCreation() {
     click(By.name("submit"));
   }
 
-  public void fillGroupForm(Group group) {
+  public void fillForm(Group group) {
     type(By.name("group_name"), group.getName());
     type(By.name("group_header"), group.getHeader());
     type(By.name("group_footer"), group.getFooter());
   }
 
-  public void initGroupCreation() {
+  public void initCreation() {
     click(By.name("new"));
   }
 
-  public void initGroupDeletion() {
+  public void initDeletion() {
     click(By.name("delete"));
   }
 
-  public void selectGroup(int index) {
+  public void select(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initEditGroup() {
+  public void initModification() {
     click(By.name("edit"));
   }
 
-  public void submitEditGroup() {
+  public void submitModification() {
     click(By.name("update"));
   }
 
-  public void createGroup(Group group, AppManager app) {
-    app.getNavigationMethods().gotoGroupPage();
-    initGroupCreation();
-    fillGroupForm(group);
-    submitGroupCreation();
+  public void create(Group group, AppManager app) {
+    app.goTo().GroupPage();
+    initCreation();
+    fillForm(group);
+    submitCreation();
     returnToGroupPage();
   }
 
-//  public boolean existingGroup() {
+  public void modify(int index, Group group) {
+    select(index);
+    initModification();
+    fillForm(group);
+    submitModification();
+    returnToGroupPage();
+  }
+
+  public void delete(int index) {
+    select(index);
+    initDeletion();
+    returnToGroupPage();
+  }
+
+//  public boolean groupExists() {
 //    return isElementPresent(By.name("selected[]"));
 //  }
 
-  public void existingGroup(AppManager app) {
-    app.getNavigationMethods().gotoGroupPage();
-    if (!isElementPresent(By.name("selected[]"))) {
-      createGroup(new Group("name", "header", "footer"), app);
+  public void groupExists(AppManager app) {
+    app.goTo().GroupPage();
+    if (list().size() == 0) {
+      create(new Group("name", "header", "footer"), app);
     }
   }
 
@@ -71,7 +85,7 @@ public class GroupMethods extends BasicMethods {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<Group> getGroupList() {
+  public List<Group> list() {
     List<Group> groups = new ArrayList<Group>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {

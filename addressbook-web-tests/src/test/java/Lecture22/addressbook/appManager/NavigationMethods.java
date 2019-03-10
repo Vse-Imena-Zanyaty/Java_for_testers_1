@@ -9,7 +9,7 @@ public class NavigationMethods extends BasicMethods {
     super(wd);
   }
 
-  public void gotoGroupPage() {
+  public void GroupPage() {
     if (isElementPresent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElementPresent(By.name("new"))) {
@@ -18,23 +18,23 @@ public class NavigationMethods extends BasicMethods {
     click(By.linkText("groups"));
   }
 
-  public void gotoHomePage() {
+  public void returnHome() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
-    click(By.linkText("home page"));
-  }
-
-  public void goHome() {
     click(By.linkText("home"));
   }
 
-  public void gotoContactCreation() {
+  public void homePage() {
+    click(By.linkText("home"));
+  }
+
+  public void contactCreationPage() {
     click(By.linkText("add new"));
   }
 
-  public void gotoEditContact(int index) {
+  public void contactModificationPage(int index) {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
-//  public void gotoEditContact() {click(By.xpath("//img[@alt='Edit']")); }
+//  public void contactModificationPage() {click(By.xpath("//img[@alt='Edit']")); }
 }

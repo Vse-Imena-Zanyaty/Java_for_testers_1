@@ -23,7 +23,7 @@ public class Contact {
   private final String email_1;
   private final String email_2;
   private final String email_3;
-  private final String contactHomePage;
+  private final String internet_page;
   private final String birthDate;
   private final String birthMonth;
   private final String birthYear;
@@ -35,7 +35,7 @@ public class Contact {
   private final String secondaryHome;
   private final String secondaryNotes;
 
-  public Contact(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String numberHome, String numberMobile, String numberWork, String numberFax, String email_1, String email_2, String email_3, String contactHomePage, String birthDate, String birthMonth, String birthYear, String anniversaryDay, String anniversaryMonth, String anniversaryYear, String contactGroup, String secondaryAddress, String secondaryHome, String secondaryNotes) {
+  public Contact(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String numberHome, String numberMobile, String numberWork, String numberFax, String email_1, String email_2, String email_3, String internet_page, String birthDate, String birthMonth, String birthYear, String anniversaryDay, String anniversaryMonth, String anniversaryYear, String contactGroup, String secondaryAddress, String secondaryHome, String secondaryNotes) {
     this.ID = Integer.MAX_VALUE;
     this.firstName = firstName;
     this.middleName = middleName;
@@ -51,7 +51,36 @@ public class Contact {
     this.email_1 = email_1;
     this.email_2 = email_2;
     this.email_3 = email_3;
-    this.contactHomePage = contactHomePage;
+    this.internet_page = internet_page;
+    this.birthDate = birthDate;
+    this.birthMonth = birthMonth;
+    this.birthYear = birthYear;
+    this.anniversaryDay = anniversaryDay;
+    this.anniversaryMonth = anniversaryMonth;
+    this.anniversaryYear = anniversaryYear;
+    this.contactGroup = contactGroup;
+    this.secondaryAddress = secondaryAddress;
+    this.secondaryHome = secondaryHome;
+    this.secondaryNotes = secondaryNotes;
+  }
+
+  public Contact(int ID, String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String numberHome, String numberMobile, String numberWork, String numberFax, String email_1, String email_2, String email_3, String internet_page, String birthDate, String birthMonth, String birthYear, String anniversaryDay, String anniversaryMonth, String anniversaryYear, String contactGroup, String secondaryAddress, String secondaryHome, String secondaryNotes) {
+    this.ID = ID;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.nickname = nickname;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.numberHome = numberHome;
+    this.numberMobile = numberMobile;
+    this.numberWork = numberWork;
+    this.numberFax = numberFax;
+    this.email_1 = email_1;
+    this.email_2 = email_2;
+    this.email_3 = email_3;
+    this.internet_page = internet_page;
     this.birthDate = birthDate;
     this.birthMonth = birthMonth;
     this.birthYear = birthYear;
@@ -80,7 +109,7 @@ public class Contact {
     this.email_1 = null;
     this.email_2 = null;
     this.email_3 = null;
-    this.contactHomePage = null;
+    this.internet_page = null;
     this.birthDate = null;
     this.birthMonth = null;
     this.birthYear = null;
@@ -153,8 +182,8 @@ public class Contact {
     return email_3;
   }
 
-  public String getContactHomePage() {
-    return contactHomePage;
+  public String getInternet_page() {
+    return internet_page;
   }
 
   public String getBirthDate() {

@@ -2,19 +2,19 @@ package Lecture22.addressbook.tests;
 
 import Lecture22.addressbook.appManager.AppManager;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 public class CommonMethods {
 
-  public final AppManager app = new AppManager(BrowserType.CHROME);
+  public static final AppManager app = new AppManager(BrowserType.CHROME);
 
-  @BeforeMethod(alwaysRun = true)
+  @BeforeSuite(alwaysRun = true)
   public void setUp() {
     app.init();
   }
 
-  @AfterMethod(alwaysRun = true)
+  @AfterSuite(alwaysRun = true)
   public void tearDown() {
     app.getSessionMethods().stop();
   }
