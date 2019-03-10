@@ -19,7 +19,7 @@ public class ContactModification extends CommonMethods {
   public void testEditContact() {
     List<Contact> before = app.contactMethods().list();
     int index = before.size() - 1;
-    Contact contact = new Contact()
+    Contact contact = new Contact().withID(before.get(index).getID())
             .withFirstName("edited_first_name").withMiddleName("edited_middle_name").withLastName("edited_last_name")
             .withNickname("edited_nickname").withTitle("edited_title").withCompany("edited_company").withAddress("edited_address")
             .withNumberHome("№ home2").withNumberMobile("№ mobile2").withNumberWork("№ work2").withNumberFax("№ fax2")
