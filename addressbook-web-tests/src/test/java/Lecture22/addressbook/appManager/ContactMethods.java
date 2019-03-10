@@ -78,14 +78,16 @@ public class ContactMethods extends BasicMethods {
     app.goTo().contactCreationPage();
     fillForm(contact, true);
     submitCreation();
+    contactCache = null;
     app.goTo().returnHome();
   }
 
   public void modify(Contact contact, AppManager app) {
     wd.findElement(By.cssSelector("a[href='edit.php?id=" + contact.getID() + "']")).click();
-    //img[@alt='Edit']")).get(ID).click();
+    // wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s'}", ID))).click();
     fillForm(contact, false);
     submitModification();
+    contactCache = null;
     app.goTo().returnHome();
   }
 
@@ -100,6 +102,7 @@ public class ContactMethods extends BasicMethods {
     selectByID(contact.getID());
     initDeletion();
     acceptAlert();
+    contactCache = null;
     app.goTo().homePage();
   }
 
@@ -107,6 +110,10 @@ public class ContactMethods extends BasicMethods {
     if (all().size() == 0) {
       create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
     }
+  }
+
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 
 /*  public List<Contact> list() {
@@ -121,15 +128,37 @@ public class ContactMethods extends BasicMethods {
     return contacts;
   }*/
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=\"entry\"]"));
     for (WebElement element : elements) {
       String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      String[] phones = element.findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new Contact().withID(ID).withFirstName(firstName).withLastName(lastName));
+      contactCache.add(new Contact().withID(ID).withFirstName(firstName).withLastName(lastName)
+              .withNumberHome(phones[0]).withNumberMobile(phones[1]).withNumberWork(phones[2]).withSecondaryHome(phones[3]));
     }
-    return contacts;
+    return contactCache;
+  }
+
+  public Contact infoFromEditForm(Contact contact) {
+    wd.findElement(By.cssSelector("a[href='edit.php?id=" + contact.getID() + "']")).click();
+    String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+    String numberHome = wd.findElement(By.name("home")).getAttribute("value");
+    String numberMobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String numberWork = wd.findElement(By.name("work")).getAttribute("value");
+    String secondaryHome = wd.findElement(By.name("phone2")).getAttribute("value");
+    wd.navigate().back();
+    return new Contact()
+            .withID(contact.getID()).withFirstName(firstName).withLastName(lastName)
+            .withNumberHome(numberHome).withNumberMobile(numberMobile).withNumberWork(numberWork).withSecondaryHome(secondaryHome);
   }
 }

@@ -5,8 +5,6 @@ import Lecture22.addressbook.objects.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -30,8 +28,8 @@ public class ContactModification extends CommonMethods {
             .withAnniversaryDay("2").withAnniversaryMonth("January").withAnniversaryYear("3333").withSecondaryAddress("edited_secondary_address")
             .withSecondaryHome("edited_secondary_home").withSecondaryNotes("edited_secondary_notes");
     app.contactMethods().modify(contact, app);
+    assertThat(app.contactMethods().count(), equalTo(before.size()));
     Contacts after = app.contactMethods().all();
-    assertThat(after.size(), equalTo(before.size()));
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 }

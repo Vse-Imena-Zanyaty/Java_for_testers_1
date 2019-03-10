@@ -16,9 +16,21 @@ public class GroupCreation extends CommonMethods {
     Group group = new Group()
             .withName("name").withHeader("header").withFooter("footer");
     app.groupMethods().create(group, app);
+    assertThat(app.groupMethods().count(), equalTo(before.size() + 1));
     Groups after = app.groupMethods().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before
             .withAdded(group.withID(after.stream().mapToInt((g) -> g.getID()).max().getAsInt()))));
+  }
+
+  @Test
+  public void testBadGroupCreation() {
+    app.goTo().GroupPage();
+    Groups before = app.groupMethods().all();
+    Group group = new Group()
+            .withName("name'").withHeader("header").withFooter("footer");
+    app.groupMethods().create(group, app);
+    assertThat(app.groupMethods().count(), equalTo(before.size()));
+    Groups after = app.groupMethods().all();
+    assertThat(after, equalTo(before));
   }
 }

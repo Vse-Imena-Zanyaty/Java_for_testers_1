@@ -28,8 +28,8 @@ public class ContactCreation extends CommonMethods {
             .withAnniversaryDay("1").withAnniversaryMonth("January").withAnniversaryYear("2222").withContactGroup("[none]")
             .withSecondaryAddress("secondary_address").withSecondaryHome("secondary_home").withSecondaryNotes("secondary_notes");
     app.contactMethods().create(contact, app);
+    assertThat(app.contactMethods().count(), equalTo(before.size() + 1));
     Contacts after = app.contactMethods().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before
             .withAdded(contact.withID(after.stream().mapToInt((c) -> c.getID()).max().getAsInt()))));
   }

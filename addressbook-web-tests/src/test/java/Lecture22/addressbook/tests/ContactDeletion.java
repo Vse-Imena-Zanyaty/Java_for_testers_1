@@ -20,8 +20,8 @@ public class ContactDeletion extends CommonMethods {
     Contacts before = app.contactMethods().all();
     Contact deletedContact = before.iterator().next();
     app.contactMethods().delete(deletedContact, app);
+    assertThat(app.contactMethods().count(), equalTo(before.size() - 1));
     Contacts after = app.contactMethods().all();
-    assertThat(after.size(), equalTo(before.size() - 1));
     assertThat(after, equalTo(before.without(deletedContact)));
   }
 }

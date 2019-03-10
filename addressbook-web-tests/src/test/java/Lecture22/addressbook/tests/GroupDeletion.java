@@ -20,8 +20,8 @@ public class GroupDeletion extends CommonMethods {
     Groups before = app.groupMethods().all();
     Group deletedGroup = before.iterator().next();
     app.groupMethods().delete(deletedGroup);
+    assertThat(app.groupMethods().count(), equalTo(before.size() - 1));
     Groups after = app.groupMethods().all();
-    assertThat(after.size(), equalTo(before.size() - 1));
     assertThat(after, equalTo(before.without(deletedGroup)));
   }
 }

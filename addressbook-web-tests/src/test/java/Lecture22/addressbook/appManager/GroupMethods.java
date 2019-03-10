@@ -43,7 +43,8 @@ public class GroupMethods extends BasicMethods {
   }*/
 
   public void selectByID(int ID) {
-    wd.findElement(By.cssSelector("input[value='" + ID + "']")).click();
+   wd.findElement(By.cssSelector("input[value='" + ID + "']")).click();
+   // wd.findElement(By.cssSelector(String.format("input[value='%s'}", ID))).click();
   }
 
   public void initModification() {
@@ -59,6 +60,7 @@ public class GroupMethods extends BasicMethods {
     initCreation();
     fillForm(group);
     submitCreation();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -67,6 +69,7 @@ public class GroupMethods extends BasicMethods {
     initModification();
     fillForm(group);
     submitModification();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -79,6 +82,7 @@ public class GroupMethods extends BasicMethods {
   public void delete(Group group) {
     selectByID(group.getID());
     initDeletion();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -93,9 +97,9 @@ public class GroupMethods extends BasicMethods {
     }
   }
 
-/*  public int getGroupCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
-  }*/
+  }
 
 /*  public List<Group> list() {
     List<Group> groups = new ArrayList<Group>();
@@ -108,14 +112,20 @@ public class GroupMethods extends BasicMethods {
     return groups;
   }*/
 
+  private Groups groupCache = null;
+
   public Groups all() {
-    Groups groups = new Groups();
+    if (groupCache != null) {
+      return new Groups(groupCache);
+    }
+
+    groupCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new Group().withID(ID).withName(name));
+      groupCache.add(new Group().withID(ID).withName(name));
     }
-    return groups;
+    return new Groups(groupCache);
   }
 }

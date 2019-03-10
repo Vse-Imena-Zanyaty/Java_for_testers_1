@@ -22,8 +22,8 @@ public class GroupModification extends CommonMethods {
     Group group = new Group()
             .withID(modifiedGroup.getID()).withName("edited_name").withHeader("edited_header").withFooter("edited_footer");
     app.groupMethods().modify(group);
+    assertThat(app.groupMethods().count(), equalTo(before.size()));
     Groups after = app.groupMethods().all();
-    assertThat(after.size(), equalTo(before.size()));
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }
 }
