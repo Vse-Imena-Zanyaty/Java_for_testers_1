@@ -140,10 +140,12 @@ public class ContactMethods extends BasicMethods {
     for (WebElement element : elements) {
       String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
-      String[] phones = element.findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");
+      String address = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
+      String allPhones = element.findElement(By.cssSelector("td:nth-child(6)")).getText();
+      String allEmails = element.findElement(By.cssSelector("td:nth-child(5)")).getText();
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       contactCache.add(new Contact().withID(ID).withFirstName(firstName).withLastName(lastName)
-              .withNumberHome(phones[0]).withNumberMobile(phones[1]).withNumberWork(phones[2]).withSecondaryHome(phones[3]));
+              .withAllPhones(allPhones).withAddress(address).withAllEmails(allEmails));
     }
     return contactCache;
   }
@@ -156,9 +158,15 @@ public class ContactMethods extends BasicMethods {
     String numberMobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String numberWork = wd.findElement(By.name("work")).getAttribute("value");
     String secondaryHome = wd.findElement(By.name("phone2")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
+    String email_1 = wd.findElement(By.name("email")).getAttribute("value");
+    String email_2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email_3 = wd.findElement(By.name("email3")).getAttribute("value");
+
     wd.navigate().back();
     return new Contact()
             .withID(contact.getID()).withFirstName(firstName).withLastName(lastName)
-            .withNumberHome(numberHome).withNumberMobile(numberMobile).withNumberWork(numberWork).withSecondaryHome(secondaryHome);
+            .withNumberHome(numberHome).withNumberMobile(numberMobile).withNumberWork(numberWork).withSecondaryHome(secondaryHome)
+            .withAddress(address).withEmail_1(email_1).withEmail_2(email_2).withEmail_3(email_3);
   }
 }

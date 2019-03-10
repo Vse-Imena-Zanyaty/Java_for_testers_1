@@ -29,6 +29,9 @@ public class Contact {
   private String secondaryAddress;
   private String secondaryHome;
   private String secondaryNotes;
+  private String allPhones;
+  private String allEmails;
+
 
   public Contact withID(int ID) {
     this.ID = ID;
@@ -160,6 +163,17 @@ public class Contact {
     return this;
   }
 
+  public Contact withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public Contact withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
+
   public int getID() {
     return ID;
   }
@@ -262,6 +276,14 @@ public class Contact {
 
   public String getSecondaryNotes() {
     return secondaryNotes;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   @Override
