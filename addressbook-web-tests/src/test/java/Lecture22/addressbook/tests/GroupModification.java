@@ -5,8 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class GroupModification extends CommonMethods {
 
@@ -17,22 +16,16 @@ public class GroupModification extends CommonMethods {
 
   @Test
   public void testEditGroup() {
-    List<Group> before = app.groupMethods().list();
-    int index = before.size() - 1;
-    Group group = new Group()
-            .withID(before.get(index).getID()).withName("edited_name").withHeader("edited_header").withFooter("edited_footer");
-//    int before = app.groupMethods().getGroupCount();
-    app.groupMethods().modify(index, group);
-    List<Group> after = app.groupMethods().list();
-//    int after = app.groupMethods().getGroupCount();
+    Set<Group> before = app.groupMethods().all();
+    Group modifiedGroup = before.iterator().next();
+        Group group = new Group()
+            .withID(modifiedGroup.getID()).withName("edited_name").withHeader("edited_header").withFooter("edited_footer");
+    app.groupMethods().modify(group);
+    Set<Group> after = app.groupMethods().all();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index);
+    before.remove(modifiedGroup);
     before.add(group);
-    Comparator<? super Group> byID = Comparator.comparingInt(Group::getID);
-//    Comparator<? super Group> byID = (g1, g2) -> Integer.compare(g1.getID(), g2.getID());
-    before.sort(byID);
-    after.sort(byID);
     Assert.assertEquals(before, after);
   }
 }

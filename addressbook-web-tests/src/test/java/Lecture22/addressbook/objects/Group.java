@@ -57,11 +57,12 @@ public class Group {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Group group = (Group) o;
-    return Objects.equals(name, group.name);
+    return ID == group.ID &&
+            Objects.equals(name, group.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(ID, name);
   }
 }

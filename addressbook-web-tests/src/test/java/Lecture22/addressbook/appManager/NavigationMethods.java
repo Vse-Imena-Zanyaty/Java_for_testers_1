@@ -33,8 +33,5 @@ public class NavigationMethods extends BasicMethods {
     click(By.linkText("add new"));
   }
 
-  public void contactModificationPage(int index) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
-  }
 //  public void contactModificationPage() {click(By.xpath("//img[@alt='Edit']")); }
 }

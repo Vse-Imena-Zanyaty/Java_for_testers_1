@@ -278,12 +278,13 @@ public class Contact {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Contact contact = (Contact) o;
-    return Objects.equals(firstName, contact.firstName) &&
+    return ID == contact.ID &&
+            Objects.equals(firstName, contact.firstName) &&
             Objects.equals(lastName, contact.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName);
+    return Objects.hash(ID, firstName, lastName);
   }
 }

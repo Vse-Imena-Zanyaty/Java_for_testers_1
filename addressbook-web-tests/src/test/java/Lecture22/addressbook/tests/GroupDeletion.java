@@ -5,8 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class GroupDeletion extends CommonMethods {
 
@@ -17,17 +16,13 @@ public class GroupDeletion extends CommonMethods {
 
   @Test
   public void testGroupDeletion() {
-    List<Group> before = app.groupMethods().list();
-    int index = before.size() - 1;
-    app.groupMethods().delete(index);
-    List<Group> after = app.groupMethods().list();
+    Set<Group> before = app.groupMethods().all();
+    Group deletedGroup = before.iterator().next();
+    app.groupMethods().delete(deletedGroup);
+    Set<Group> after = app.groupMethods().all();
     Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(index);
-    Comparator<? super Group> byID = Comparator.comparingInt(Group::getID);
-//    Comparator<? super Group> byID = (g1, g2) -> Integer.compare(g1.getID(), g2.getID());
-    before.sort(byID);
-    after.sort(byID);
+    before.remove(deletedGroup);
     Assert.assertEquals(before, after);
   }
 }

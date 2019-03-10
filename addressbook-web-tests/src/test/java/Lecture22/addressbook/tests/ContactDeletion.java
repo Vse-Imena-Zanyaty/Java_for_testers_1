@@ -5,8 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactDeletion extends CommonMethods {
 
@@ -17,16 +16,13 @@ public class ContactDeletion extends CommonMethods {
 
   @Test
   public void testContactDeletion() {
-    List<Contact> before = app.contactMethods().list();
-    int index = before.size() - 1;
-    app.contactMethods().delete(index, app);
-    List<Contact> after = app.contactMethods().list();
+    Set<Contact> before = app.contactMethods().all();
+    Contact deletedContact = before.iterator().next();
+    app.contactMethods().delete(deletedContact, app);
+    Set<Contact> after = app.contactMethods().all();
     Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(index);
-    Comparator<? super Contact> byID = Comparator.comparingInt(Contact::getID);
-    before.sort(byID);
-    after.sort(byID);
+    before.remove(deletedContact);
     Assert.assertEquals(before, after);
   }
 }
