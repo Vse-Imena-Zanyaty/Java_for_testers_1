@@ -64,7 +64,7 @@ public class Contact {
     this.secondaryNotes = secondaryNotes;
   }
 
-  public Contact(String firstName, String lastName) {
+  public Contact(int ID, String firstName, String lastName) {
     this.ID = Integer.MAX_VALUE;
     this.firstName = firstName;
     this.middleName = null;

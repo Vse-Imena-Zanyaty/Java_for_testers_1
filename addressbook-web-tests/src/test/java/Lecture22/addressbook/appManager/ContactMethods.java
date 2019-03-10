@@ -90,7 +90,7 @@ public class ContactMethods extends BasicMethods {
       String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      Contact contact = new Contact(firstName, lastName);
+      Contact contact = new Contact(ID, firstName, lastName);
       contacts.add(contact);
     }
     return contacts;
