@@ -1,11 +1,12 @@
 package Lecture22.addressbook.tests;
 
 import Lecture22.addressbook.objects.Group;
-import org.testng.Assert;
+import Lecture22.addressbook.objects.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupDeletion extends CommonMethods {
 
@@ -16,13 +17,11 @@ public class GroupDeletion extends CommonMethods {
 
   @Test
   public void testGroupDeletion() {
-    Set<Group> before = app.groupMethods().all();
+    Groups before = app.groupMethods().all();
     Group deletedGroup = before.iterator().next();
     app.groupMethods().delete(deletedGroup);
-    Set<Group> after = app.groupMethods().all();
-    Assert.assertEquals(after.size(), before.size() - 1);
-
-    before.remove(deletedGroup);
-    Assert.assertEquals(before, after);
+    Groups after = app.groupMethods().all();
+    assertThat(after.size(), equalTo(before.size() - 1));
+    assertThat(after, equalTo(before.without(deletedGroup)));
   }
 }

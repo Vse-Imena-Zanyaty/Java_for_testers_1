@@ -1,11 +1,12 @@
 package Lecture22.addressbook.tests;
 
 import Lecture22.addressbook.objects.Group;
-import org.testng.Assert;
+import Lecture22.addressbook.objects.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupModification extends CommonMethods {
 
@@ -16,16 +17,13 @@ public class GroupModification extends CommonMethods {
 
   @Test
   public void testEditGroup() {
-    Set<Group> before = app.groupMethods().all();
+    Groups before = app.groupMethods().all();
     Group modifiedGroup = before.iterator().next();
-        Group group = new Group()
+    Group group = new Group()
             .withID(modifiedGroup.getID()).withName("edited_name").withHeader("edited_header").withFooter("edited_footer");
     app.groupMethods().modify(group);
-    Set<Group> after = app.groupMethods().all();
-    Assert.assertEquals(after.size(), before.size());
-
-    before.remove(modifiedGroup);
-    before.add(group);
-    Assert.assertEquals(before, after);
+    Groups after = app.groupMethods().all();
+    assertThat(after.size(), equalTo(before.size()));
+    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }
 }

@@ -1,15 +1,14 @@
 package Lecture22.addressbook.appManager;
 
 import Lecture22.addressbook.objects.Contact;
+import Lecture22.addressbook.objects.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactMethods extends BasicMethods {
 
@@ -122,8 +121,8 @@ public class ContactMethods extends BasicMethods {
     return contacts;
   }*/
 
-  public Set<Contact> all() {
-    Set<Contact> contacts = new HashSet<>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=\"entry\"]"));
     for (WebElement element : elements) {
       String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
