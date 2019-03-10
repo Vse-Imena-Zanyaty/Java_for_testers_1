@@ -65,7 +65,7 @@ public class Contact {
   }
 
   public Contact(int ID, String firstName, String lastName) {
-    this.ID = Integer.MAX_VALUE;
+    this.ID = ID;
     this.firstName = firstName;
     this.middleName = null;
     this.lastName = lastName;

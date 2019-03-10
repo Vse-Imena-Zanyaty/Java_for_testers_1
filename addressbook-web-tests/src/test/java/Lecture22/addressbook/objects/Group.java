@@ -20,6 +20,13 @@ public class Group {
     this.footer = footer;
   }
 
+  public Group(int ID, String name, String header, String footer) {
+    this.ID = ID;
+    this.name = name;
+    this.header = header;
+    this.footer = footer;
+  }
+
   public int getID() {
     return ID;
   }
