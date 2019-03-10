@@ -3,28 +3,29 @@ package Lecture22.addressbook.objects;
 import java.util.Objects;
 
 public class Group {
+  private int ID = Integer.MAX_VALUE;
+  private String name;
+  private String header;
+  private String footer;
 
-  public void setID(int ID) {
+  public Group withID(int ID) {
     this.ID = ID;
+    return this;
   }
 
-  private int ID;
-  private final String name;
-  private final String header;
-  private final String footer;
-
-  public Group(String name, String header, String footer) {
-    this.ID = Integer.MAX_VALUE;
+  public Group withName(String name) {
     this.name = name;
-    this.header = header;
-    this.footer = footer;
+    return this;
   }
 
-  public Group(int ID, String name, String header, String footer) {
-    this.ID = ID;
-    this.name = name;
+  public Group withHeader(String header) {
     this.header = header;
+    return this;
+  }
+
+  public Group withFooter(String footer) {
     this.footer = footer;
+    return this;
   }
 
   public int getID() {

@@ -93,7 +93,7 @@ public class ContactMethods extends BasicMethods {
 
   public void contactExists(AppManager app) {
     if (list().size() == 0) {
-      create(new Contact("first_name", "middle_name", "last_name", "nickname", "title", "company", "address", "+7 999 222 55 77", "+3240234934203", "83247239432432", "08435735435000", "email1@email.com", "email2@email.com", "new", "vkontakte.com", "1", "January", "1111", "1", "January", "2222", "[none]", "secondary_address", "secondary_home", "secondary_notes"), app);
+      create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
     }
   }
 
@@ -104,8 +104,7 @@ public class ContactMethods extends BasicMethods {
       String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      Contact contact = new Contact(ID, firstName, lastName);
-      contacts.add(contact);
+      contacts.add(new Contact().withID(ID).withFirstName(firstName).withLastName(lastName));
     }
     return contacts;
   }

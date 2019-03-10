@@ -19,7 +19,8 @@ public class GroupModification extends CommonMethods {
   public void testEditGroup() {
     List<Group> before = app.groupMethods().list();
     int index = before.size() - 1;
-    Group group = new Group(before.get(index).getID(), "edited_name", "edited_header", "edited_footer");
+    Group group = new Group()
+            .withID(before.get(index).getID()).withName("edited_name").withHeader("edited_header").withFooter("edited_footer");
 //    int before = app.groupMethods().getGroupCount();
     app.groupMethods().modify(index, group);
     List<Group> after = app.groupMethods().list();

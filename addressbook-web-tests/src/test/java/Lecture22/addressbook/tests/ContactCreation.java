@@ -19,12 +19,19 @@ public class ContactCreation extends CommonMethods {
   @Test
   public void testContactCreation() {
     List<Contact> before = app.contactMethods().list();
-    Contact contact = new Contact("first_name", "middle_name", "last_name", "nickname", "title", "company", "address", "+7 999 222 55 77", "+3240234934203", "83247239432432", "08435735435000", "email1@email.com", "email2@email.com", "new", "vkontakte.com", "1", "January", "1111", "1", "January", "2222", "[none]", "secondary_address", "secondary_home", "secondary_notes");
+    Contact contact = new Contact()
+            .withFirstName("first_name").withMiddleName("middle_name").withLastName("last_name")
+            .withNickname("nickname").withTitle("title").withCompany("company").withAddress("address")
+            .withNumberHome("№ home").withNumberMobile("№ mobile").withNumberWork("№ work").withNumberFax("№ fax")
+            .withEmail_1("email1@email.com"). withEmail_2("email2@email.com").withEmail_3("new")
+            .withInternet_page("vkontakte.com").withBirthDate("1").withBirthMonth("January").withBirthYear("1111")
+            .withAnniversaryDay("1").withAnniversaryMonth("January").withAnniversaryYear("2222").withContactGroup("[none]")
+            .withSecondaryAddress("secondary_address").withSecondaryHome("secondary_home").withSecondaryNotes("secondary_notes");
     app.contactMethods().create(contact, app);
     List<Contact> after = app.contactMethods().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    contact.setID(after.stream().max(Comparator.comparingInt(Contact::getID)).get().getID());
+    contact.withID(after.stream().max(Comparator.comparingInt(Contact::getID)).get().getID());
     before.add(contact);
     Comparator<? super Contact> byID = Comparator.comparingInt(Contact::getID);
     before.sort(byID);

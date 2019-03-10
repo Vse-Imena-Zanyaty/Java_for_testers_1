@@ -19,7 +19,14 @@ public class ContactModification extends CommonMethods {
   public void testEditContact() {
     List<Contact> before = app.contactMethods().list();
     int index = before.size() - 1;
-    Contact contact = new Contact(before.get(index).getID(), "edited_first_name", "edited_middle_name", "edited_last_name", "edited_nickname", "edited_title", "edited_company", "edited_address", "8 999 222 55 77", "4 240234934203", "8 324723943243", "0 35735435000", "edited_email1@email.com", "edited_email2@email.com", "edited_email3@email.com", "edited_vkontakte.com", "1", "January", "0000", "1", "January", "1111", null, "edited_secondary_address", "edited_secondary_home", "edited_secondary_notes");
+    Contact contact = new Contact()
+            .withFirstName("edited_first_name").withMiddleName("edited_middle_name").withLastName("edited_last_name")
+            .withNickname("edited_nickname").withTitle("edited_title").withCompany("edited_company").withAddress("edited_address")
+            .withNumberHome("№ home2").withNumberMobile("№ mobile2").withNumberWork("№ work2").withNumberFax("№ fax2")
+            .withEmail_1("2email1@email.com"). withEmail_2("2email2@email.com").withEmail_3("2new")
+            .withInternet_page("2vkontakte.com").withBirthDate("2").withBirthMonth("January").withBirthYear("2222")
+            .withAnniversaryDay("2").withAnniversaryMonth("January").withAnniversaryYear("3333").withSecondaryAddress("edited_secondary_address")
+            .withSecondaryHome("edited_secondary_home").withSecondaryNotes("edited_secondary_notes");
     app.contactMethods().modify(index, contact, app);
     List<Contact> after = app.contactMethods().list();
     Assert.assertEquals(after.size(), before.size());

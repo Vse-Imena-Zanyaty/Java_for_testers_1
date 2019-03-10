@@ -3,123 +3,161 @@ package Lecture22.addressbook.objects;
 import java.util.Objects;
 
 public class Contact {
+  private int ID = Integer.MAX_VALUE;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String numberHome;
+  private String numberMobile;
+  private String numberWork;
+  private String numberFax;
+  private String email_1;
+  private String email_2;
+  private String email_3;
+  private String internet_page;
+  private String birthDate;
+  private String birthMonth;
+  private String birthYear;
+  private String anniversaryDay;
+  private String anniversaryMonth;
+  private String anniversaryYear;
+  private String contactGroup;
+  private String secondaryAddress;
+  private String secondaryHome;
+  private String secondaryNotes;
 
-  public void setID(int ID) {
+  public Contact withID(int ID) {
     this.ID = ID;
+    return this;
   }
 
-  private int ID;
-  private final String firstName;
-  private final String middleName;
-  private final String lastName;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String numberHome;
-  private final String numberMobile;
-  private final String numberWork;
-  private final String numberFax;
-  private final String email_1;
-  private final String email_2;
-  private final String email_3;
-  private final String internet_page;
-  private final String birthDate;
-  private final String birthMonth;
-  private final String birthYear;
-  private final String anniversaryDay;
-  private final String anniversaryMonth;
-  private final String anniversaryYear;
-  private final String contactGroup;
-  private final String secondaryAddress;
-  private final String secondaryHome;
-  private final String secondaryNotes;
-
-  public Contact(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String numberHome, String numberMobile, String numberWork, String numberFax, String email_1, String email_2, String email_3, String internet_page, String birthDate, String birthMonth, String birthYear, String anniversaryDay, String anniversaryMonth, String anniversaryYear, String contactGroup, String secondaryAddress, String secondaryHome, String secondaryNotes) {
-    this.ID = Integer.MAX_VALUE;
+  public Contact withFirstName(String firstName) {
     this.firstName = firstName;
+    return this;
+  }
+
+  public Contact withMiddleName(String middleName) {
     this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.numberHome = numberHome;
-    this.numberMobile = numberMobile;
-    this.numberWork = numberWork;
-    this.numberFax = numberFax;
-    this.email_1 = email_1;
-    this.email_2 = email_2;
-    this.email_3 = email_3;
-    this.internet_page = internet_page;
-    this.birthDate = birthDate;
-    this.birthMonth = birthMonth;
-    this.birthYear = birthYear;
-    this.anniversaryDay = anniversaryDay;
-    this.anniversaryMonth = anniversaryMonth;
-    this.anniversaryYear = anniversaryYear;
-    this.contactGroup = contactGroup;
-    this.secondaryAddress = secondaryAddress;
-    this.secondaryHome = secondaryHome;
-    this.secondaryNotes = secondaryNotes;
+    return this;
   }
 
-  public Contact(int ID, String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String numberHome, String numberMobile, String numberWork, String numberFax, String email_1, String email_2, String email_3, String internet_page, String birthDate, String birthMonth, String birthYear, String anniversaryDay, String anniversaryMonth, String anniversaryYear, String contactGroup, String secondaryAddress, String secondaryHome, String secondaryNotes) {
-    this.ID = ID;
-    this.firstName = firstName;
-    this.middleName = middleName;
+  public Contact withLastName(String lastName) {
     this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.numberHome = numberHome;
-    this.numberMobile = numberMobile;
-    this.numberWork = numberWork;
-    this.numberFax = numberFax;
-    this.email_1 = email_1;
-    this.email_2 = email_2;
-    this.email_3 = email_3;
-    this.internet_page = internet_page;
-    this.birthDate = birthDate;
-    this.birthMonth = birthMonth;
-    this.birthYear = birthYear;
-    this.anniversaryDay = anniversaryDay;
-    this.anniversaryMonth = anniversaryMonth;
-    this.anniversaryYear = anniversaryYear;
-    this.contactGroup = contactGroup;
-    this.secondaryAddress = secondaryAddress;
-    this.secondaryHome = secondaryHome;
-    this.secondaryNotes = secondaryNotes;
+    return this;
   }
 
-  public Contact(int ID, String firstName, String lastName) {
-    this.ID = ID;
-    this.firstName = firstName;
-    this.middleName = null;
-    this.lastName = lastName;
-    this.nickname = null;
-    this.title = null;
-    this.company = null;
-    this.address = null;
-    this.numberHome = null;
-    this.numberMobile = null;
-    this.numberWork = null;
-    this.numberFax = null;
-    this.email_1 = null;
-    this.email_2 = null;
-    this.email_3 = null;
-    this.internet_page = null;
-    this.birthDate = null;
-    this.birthMonth = null;
-    this.birthYear = null;
-    this.anniversaryDay = null;
-    this.anniversaryMonth = null;
-    this.anniversaryYear = null;
-    this.contactGroup = null;
-    this.secondaryAddress = null;
-    this.secondaryHome = null;
-    this.secondaryNotes = null;
+  public Contact withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public Contact withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public Contact withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public Contact withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public Contact withNumberHome(String numberHome) {
+    this.numberHome = numberHome;
+    return this;
+  }
+
+  public Contact withNumberMobile(String numberMobile) {
+    this.numberMobile = numberMobile;
+    return this;
+  }
+
+  public Contact withNumberWork(String numberWork) {
+    this.numberWork = numberWork;
+    return this;
+  }
+
+  public Contact withNumberFax(String numberFax) {
+    this.numberFax = numberFax;
+    return this;
+  }
+
+  public Contact withEmail_1(String email_1) {
+    this.email_1 = email_1;
+    return this;
+  }
+
+  public Contact withEmail_2(String email_2) {
+    this.email_2 = email_2;
+    return this;
+  }
+
+  public Contact withEmail_3(String email_3) {
+    this.email_3 = email_3;
+    return this;
+  }
+
+  public Contact withInternet_page(String internet_page) {
+    this.internet_page = internet_page;
+    return this;
+  }
+
+  public Contact withBirthDate(String birthDate) {
+    this.birthDate = birthDate;
+    return this;
+  }
+
+  public Contact withBirthMonth(String birthMonth) {
+    this.birthMonth = birthMonth;
+    return this;
+  }
+
+  public Contact withBirthYear(String birthYear) {
+    this.birthYear = birthYear;
+    return this;
+  }
+
+  public Contact withAnniversaryDay(String anniversaryDay) {
+    this.anniversaryDay = anniversaryDay;
+    return this;
+  }
+
+  public Contact withAnniversaryMonth(String anniversaryMonth) {
+    this.anniversaryMonth = anniversaryMonth;
+    return this;
+  }
+
+  public Contact withAnniversaryYear(String anniversaryYear) {
+    this.anniversaryYear = anniversaryYear;
+    return this;
+  }
+
+  public Contact withContactGroup(String contactGroup) {
+    this.contactGroup = contactGroup;
+    return this;
+  }
+
+  public Contact withSecondaryAddress(String secondaryAddress) {
+    this.secondaryAddress = secondaryAddress;
+    return this;
+  }
+
+  public Contact withSecondaryHome(String secondaryHome) {
+    this.secondaryHome = secondaryHome;
+    return this;
+  }
+
+  public Contact withSecondaryNotes(String secondaryNotes) {
+    this.secondaryNotes = secondaryNotes;
+    return this;
   }
 
   public int getID() {

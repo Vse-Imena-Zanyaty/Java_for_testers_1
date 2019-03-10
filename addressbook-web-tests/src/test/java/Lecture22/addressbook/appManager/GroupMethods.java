@@ -77,7 +77,7 @@ public class GroupMethods extends BasicMethods {
   public void groupExists(AppManager app) {
     app.goTo().GroupPage();
     if (list().size() == 0) {
-      create(new Group("name", "header", "footer"), app);
+      create(new Group().withName("name"), app);
     }
   }
 
@@ -91,8 +91,7 @@ public class GroupMethods extends BasicMethods {
     for (WebElement element : elements) {
       String name = element.getText();
       int ID = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      Group group = new Group(ID, name, null, null);
-      groups.add(group);
+      groups.add(new Group().withID(ID).withName(name));
     }
     return groups;
   }
