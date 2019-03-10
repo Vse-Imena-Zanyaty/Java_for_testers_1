@@ -50,7 +50,7 @@ public class AppManager {
   }
 
   public GroupMethods groupMethods() {
-  return groupMethods;
+    return groupMethods;
   }
 
   public ContactMethods contactMethods() {
