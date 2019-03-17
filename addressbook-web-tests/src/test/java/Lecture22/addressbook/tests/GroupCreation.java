@@ -5,6 +5,8 @@ import Lecture22.addressbook.objects.Groups;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -33,7 +35,7 @@ public class GroupCreation extends CommonMethods {
     XStream xStream = new XStream();
     xStream.processAnnotations(Group.class);
     List<Group> groups = (List<Group>) xStream.fromXML(xml);
-    return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
 
   @DataProvider
