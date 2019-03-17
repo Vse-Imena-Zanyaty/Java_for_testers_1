@@ -6,7 +6,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import com.thoughtworks.xstream.XStream;
 
 import java.io.File;

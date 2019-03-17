@@ -1,34 +1,65 @@
 package Lecture22.addressbook.objects;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 import java.util.Objects;
 
+@XStreamAlias("contact")
 public class Contact {
+  @XStreamOmitField
   private int ID = Integer.MAX_VALUE;
+  @Expose
   private String firstName;
+  @Expose
   private String middleName;
+  @Expose
   private String lastName;
+  @Expose
   private String nickname;
+  @Expose
   private String title;
+  @Expose
   private String company;
+  @Expose
   private String address;
+  @Expose
   private String numberHome;
+  @Expose
   private String numberMobile;
+  @Expose
   private String numberWork;
+  @Expose
   private String numberFax;
+  @Expose
   private String email_1;
+  @Expose
   private String email_2;
+  @Expose
   private String email_3;
+  @Expose
   private String internet_page;
+  @Expose
   private String birthDate;
+  @Expose
   private String birthMonth;
+  @Expose
   private String birthYear;
+  @Expose
   private String anniversaryDay;
+  @Expose
   private String anniversaryMonth;
+  @Expose
   private String anniversaryYear;
+  @Expose
   private String contactGroup;
+  @Expose
   private String secondaryAddress;
+  @Expose
   private String secondaryHome;
+  @Expose
   private String secondaryNotes;
   private String allPhones;
   private String allEmails;
