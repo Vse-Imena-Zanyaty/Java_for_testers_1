@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Lecture22.addressbook.tests.ContactCreation" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-17T19:38:27" hostname="SPBNB-PRC1839" time="7.129">
+  <properties/>
+  <testcase name="testContactCreation[0](Contact{ID=2147483647, firstName='first_name 0', lastName='last_name 0'})" classname="Lecture22.addressbook.tests.ContactCreation" time="6.822"/>
+  <testcase name="testCurrentDir" classname="Lecture22.addressbook.tests.ContactCreation" time="0.003"/>
+  <system-out><![CDATA[C:\Users\obamburo\Documents\GitHub\Java_for_testers_1\addressbook-web-tests\.
+C:\Users\obamburo\Documents\GitHub\Java_for_testers_1\addressbook-web-tests\src\test\resources\image.jpg
+true
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

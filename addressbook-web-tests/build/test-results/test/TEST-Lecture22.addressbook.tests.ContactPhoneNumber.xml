@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Lecture22.addressbook.tests.ContactPhoneNumber" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-03-17T19:38:35" hostname="SPBNB-PRC1839" time="0.356">
+  <properties/>
+  <testcase name="testPhoneNumbers" classname="Lecture22.addressbook.tests.ContactPhoneNumber" time="0.356"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

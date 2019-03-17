@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "first_name 0",
+    "middleName": "middle_name 0",
+    "lastName": "last_name 0",
+    "nickname": "nickname 0",
+    "title": "title 0",
+    "company": "company 0",
+    "address": "address 0",
+    "numberHome": "№ home 0",
+    "numberMobile": "№ mobile 0",
+    "numberWork": "№ work 0",
+    "numberFax": "№ fax 0",
+    "email_1": "0email_1@email.com",
+    "email_2": "0email_2@email.com",
+    "email_3": "0email_3@email.com",
+    "internet_page": "0 website.com",
+    "birthDate": "1",
+    "birthMonth": "January",
+    "birthYear": "1111",
+    "anniversaryDay": "1",
+    "anniversaryMonth": "January",
+    "anniversaryYear": "2222",
+    "contactGroup": "[none]",
+    "secondaryAddress": "secondary_address 0",
+    "secondaryHome": "secondary_home 0",
+    "secondaryNotes": "secondary_notes 0"
+  }
+]

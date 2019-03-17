@@ -5,12 +5,15 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.IOException;
+
 public class CommonMethods {
 
-  public static final AppManager app = new AppManager(BrowserType.CHROME);
+  public static final AppManager app
+          = new AppManager(System.getProperty("browser", BrowserType.CHROME));
 
   @BeforeSuite(alwaysRun = true)
-  public void setUp() {
+  public void setUp() throws IOException {
     app.init();
   }
 
