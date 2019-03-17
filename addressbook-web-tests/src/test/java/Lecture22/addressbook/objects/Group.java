@@ -1,11 +1,20 @@
 package Lecture22.addressbook.objects;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.util.Objects;
 
+@XStreamAlias("group")
 public class Group {
+  @XStreamOmitField
   private int ID = Integer.MAX_VALUE;
+  @Expose
   private String name;
+  @Expose
   private String header;
+  @Expose
   private String footer;
 
   public Group withID(int ID) {
