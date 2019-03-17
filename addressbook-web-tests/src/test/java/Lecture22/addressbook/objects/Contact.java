@@ -1,5 +1,6 @@
 package Lecture22.addressbook.objects;
 
+import java.io.File;
 import java.util.Objects;
 
 public class Contact {
@@ -31,6 +32,7 @@ public class Contact {
   private String secondaryNotes;
   private String allPhones;
   private String allEmails;
+  private File photo;
 
 
   public Contact withID(int ID) {
@@ -173,6 +175,10 @@ public class Contact {
     return this;
   }
 
+  public Contact withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   public int getID() {
     return ID;
@@ -284,6 +290,10 @@ public class Contact {
 
   public String getAllEmails() {
     return allEmails;
+  }
+
+  public File getPhoto() {
+    return photo;
   }
 
   @Override

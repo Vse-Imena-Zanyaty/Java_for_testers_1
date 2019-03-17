@@ -47,6 +47,7 @@ public class ContactMethods extends BasicMethods {
     type(By.name("middlename"), contact.getMiddleName());
     type(By.name("lastname"), contact.getLastName());
     type(By.name("nickname"), contact.getNickname());
+    attach(By.name("photo"), contact.getPhoto());
     type(By.name("title"), contact.getTitle());
     type(By.name("company"), contact.getCompany());
     type(By.name("address"), contact.getAddress());

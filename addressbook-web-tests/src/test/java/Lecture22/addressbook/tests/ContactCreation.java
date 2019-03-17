@@ -5,6 +5,8 @@ import Lecture22.addressbook.objects.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -19,9 +21,10 @@ public class ContactCreation extends CommonMethods {
   @Test
   public void testContactCreation() {
     Contacts before = app.contactMethods().all();
+    File photo = new File("src/test/resources/image.jpg");
     Contact contact = new Contact()
             .withFirstName("first_name").withMiddleName("middle_name").withLastName("last_name")
-            .withNickname("nickname").withTitle("title").withCompany("company").withAddress("address")
+            .withNickname("nickname").withPhoto(photo).withTitle("title").withCompany("company").withAddress("address")
             .withNumberHome("№ home").withNumberMobile("№ mobile").withNumberWork("№ work").withNumberFax("№ fax")
             .withEmail_1("email1@email.com").withEmail_2("email2@email.com").withEmail_3("new")
             .withInternet_page("vkontakte.com").withBirthDate("1").withBirthMonth("January").withBirthYear("1111")
@@ -33,4 +36,14 @@ public class ContactCreation extends CommonMethods {
     assertThat(after, equalTo(before
             .withAdded(contact.withID(after.stream().mapToInt((c) -> c.getID()).max().getAsInt()))));
   }
+
+  @Test
+  public void testCurrentDir() {
+    File currentDir = new File(".");
+    System.out.println(currentDir.getAbsolutePath());
+    File photo = new File("src/test/resources/image.jpg");
+    System.out.println(photo.getAbsolutePath());
+    System.out.println(photo.exists());
+  }
+
 }
