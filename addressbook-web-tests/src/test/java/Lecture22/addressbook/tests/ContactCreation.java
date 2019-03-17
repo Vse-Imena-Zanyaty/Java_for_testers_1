@@ -2,10 +2,19 @@ package Lecture22.addressbook.tests;
 
 import Lecture22.addressbook.objects.Contact;
 import Lecture22.addressbook.objects.Contacts;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,19 +27,25 @@ public class ContactCreation extends CommonMethods {
     app.goTo().homePage();
   }
 
-  @Test
-  public void testContactCreation() {
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJSON() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+    String json = "";
+    String line = reader.readLine();
+    while (line != null) {
+      json += line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<Contact> contacts = gson.fromJson(json, new TypeToken<List<Contact>>(){}.getType());
+    return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
+  }
+
+  @Test(dataProvider = "validContactsFromJSON")
+  public void testContactCreation(Contact contact) {
     Contacts before = app.contactMethods().all();
     File photo = new File("src/test/resources/image.jpg");
-    Contact contact = new Contact()
-            .withFirstName("first_name").withMiddleName("middle_name").withLastName("last_name")
-            .withNickname("nickname").withPhoto(photo).withTitle("title").withCompany("company").withAddress("address")
-            .withNumberHome("№ home").withNumberMobile("№ mobile").withNumberWork("№ work").withNumberFax("№ fax")
-            .withEmail_1("email1@email.com").withEmail_2("email2@email.com").withEmail_3("new")
-            .withInternet_page("vkontakte.com").withBirthDate("1").withBirthMonth("January").withBirthYear("1111")
-            .withAnniversaryDay("1").withAnniversaryMonth("January").withAnniversaryYear("2222").withContactGroup("[none]")
-            .withSecondaryAddress("secondary_address").withSecondaryHome("secondary_home").withSecondaryNotes("secondary_notes");
-    app.contactMethods().create(contact, app);
+    app.contactMethods().create(contact.withPhoto(photo), app);
     assertThat(app.contactMethods().count(), equalTo(before.size() + 1));
     Contacts after = app.contactMethods().all();
     assertThat(after, equalTo(before

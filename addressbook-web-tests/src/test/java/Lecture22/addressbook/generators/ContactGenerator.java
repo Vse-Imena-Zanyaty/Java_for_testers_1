@@ -68,14 +68,12 @@ public class ContactGenerator {
 
   private List<Contact> generateContacts(int count) {
     List<Contact> contacts = new ArrayList<Contact>();
-    File photo = new File("src/test/resources/image.jpg");
     for (int i = 0; i < count; i++) {
       contacts.add(new Contact()
               .withFirstName(String.format("first_name %s", i))
               .withMiddleName(String.format("middle_name %s", i))
               .withLastName(String.format("last_name %s", i))
               .withNickname(String.format("nickname %s", i))
-              .withPhoto(photo)
               .withTitle(String.format("title %s", i))
               .withCompany(String.format("company %s", i))
               .withAddress(String.format("address %s", i))
