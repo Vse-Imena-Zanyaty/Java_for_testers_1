@@ -17,6 +17,8 @@ import java.util.List;
 
 public class GroupGenerator {
 
+  //-c 1 -d json -f addressbook-web-tests/src/test/resources/groups.json
+
   @Parameter(names = "-c", description = "Group count")
   public int count;
 

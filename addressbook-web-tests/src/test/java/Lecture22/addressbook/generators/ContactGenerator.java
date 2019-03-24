@@ -17,6 +17,8 @@ import java.util.List;
 
 public class ContactGenerator {
 
+  //-c 1 -d json -f addressbook-web-tests/src/test/resources/contacts.json
+
   @Parameter(names = "-c", description = "Contact count")
   public int count;
 
