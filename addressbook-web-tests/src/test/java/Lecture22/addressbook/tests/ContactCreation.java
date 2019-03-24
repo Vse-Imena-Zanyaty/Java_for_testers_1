@@ -58,6 +58,7 @@ public class ContactCreation extends CommonMethods {
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before
             .withAdded(contact.withID(after.stream().mapToInt((c) -> c.getID()).max().getAsInt()))));
+    verifyContactListInUI(); //-DverifyUI=true
   }
 
   @Test(enabled = false)

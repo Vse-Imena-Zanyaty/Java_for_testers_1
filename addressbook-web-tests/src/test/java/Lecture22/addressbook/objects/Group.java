@@ -72,6 +72,8 @@ public class Group {
     return "Group{" +
             "ID=" + ID +
             ", name='" + name + '\'' +
+            ", header='" + header + '\'' +
+            ", footer='" + footer + '\'' +
             '}';
   }
 

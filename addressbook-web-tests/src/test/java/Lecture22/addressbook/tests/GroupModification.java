@@ -28,5 +28,6 @@ public class GroupModification extends CommonMethods {
     assertThat(app.groupMethods().count(), equalTo(before.size()));
     Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+    verifyGroupListInUI(); //-DverifyUI=true
   }
 }

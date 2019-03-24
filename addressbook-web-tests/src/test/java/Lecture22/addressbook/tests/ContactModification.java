@@ -36,5 +36,6 @@ public class ContactModification extends CommonMethods {
     assertThat(app.contactMethods().count(), equalTo(before.size()));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+    verifyContactListInUI(); //-DverifyUI=true
   }
 }

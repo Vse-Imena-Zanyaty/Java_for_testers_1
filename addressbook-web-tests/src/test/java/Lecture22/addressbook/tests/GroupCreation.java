@@ -73,5 +73,6 @@ public class GroupCreation extends CommonMethods {
     assertThat(app.groupMethods().count(), equalTo(before.size()));
     Groups after = app.db().groups();
     assertThat(after, equalTo(before));
+    verifyGroupListInUI(); //-DverifyUI=true
   }
 }

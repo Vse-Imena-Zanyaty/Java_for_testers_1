@@ -25,5 +25,6 @@ public class ContactDeletion extends CommonMethods {
     assertThat(app.contactMethods().count(), equalTo(before.size() - 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(deletedContact)));
+    verifyContactListInUI(); //-DverifyUI=true
   }
 }
