@@ -3,10 +3,9 @@ package Lecture22.addressbook.tests;
 import Lecture22.addressbook.objects.Contact;
 import Lecture22.addressbook.objects.Contacts;
 import Lecture22.addressbook.objects.Group;
+import Lecture22.addressbook.objects.Groups;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -51,9 +50,10 @@ public class ContactCreation extends CommonMethods {
 
   @Test(dataProvider = "validContactsFromJSON")
   public void testContactCreation(Contact contact) {
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/image.jpg");
-    app.contactMethods().create(contact.withPhoto(photo), app);
+    app.contactMethods().create(contact.inGroup(groups.iterator().next()).withPhoto(photo), app);
     assertThat(app.contactMethods().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before

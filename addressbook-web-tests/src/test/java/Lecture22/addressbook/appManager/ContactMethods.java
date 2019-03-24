@@ -67,7 +67,10 @@ public class ContactMethods extends BasicMethods {
     new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contact.getAnniversaryMonth());
     type(By.name("ayear"), contact.getAnniversaryYear());
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getContactGroup());
+      if (contact.getGroups().size() > 0) {
+        Assert.assertTrue(contact.getGroups().size() == 1);
+      }
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -80,7 +83,7 @@ public class ContactMethods extends BasicMethods {
     File photo = new File("src/test/resources/image.jpg");
     create(new Contact().withFirstName("first_name").withLastName("last_name")
             .withPhoto(photo).withBirthDate((byte) 1).withAnniversaryDay((byte) 2)
-            .withBirthMonth("October").withAnniversaryMonth("April").withContactGroup("[none]"), app);
+            .withBirthMonth("October").withAnniversaryMonth("April"), app);
   }
 
   public void create(Contact contact, AppManager app) {

@@ -93,7 +93,7 @@ public class ContactGenerator {
               .withAnniversaryDay((byte) 1)
               .withAnniversaryMonth("January")
               .withAnniversaryYear("2222")
-              .withContactGroup("[none]")
+              //.withContactGroup("[none]")
               .withSecondaryAddress(String.format("secondary_address %s", i))
               .withSecondaryHome(String.format("secondary_home %s", i))
               .withSecondaryNotes(String.format("secondary_notes %s", i)));

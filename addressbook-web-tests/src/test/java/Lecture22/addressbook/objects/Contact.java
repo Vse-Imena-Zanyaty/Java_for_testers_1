@@ -3,11 +3,14 @@ package Lecture22.addressbook.objects;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import net.bytebuddy.build.Plugin;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -91,9 +94,9 @@ public class Contact {
   @Expose
   @Column(name = "ayear")
   private String anniversaryYear;
-  @Expose
+/*  @Expose
   @Transient
-  private String contactGroup;
+  private String contactGroup;*/
   @Expose
   @Column(name = "address2")
   @Type(type = "text")
@@ -113,6 +116,11 @@ public class Contact {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<Group> groups = new HashSet<Group>();
 
 
   public Contact withID(int ID) {
@@ -230,10 +238,10 @@ public class Contact {
     return this;
   }
 
-  public Contact withContactGroup(String contactGroup) {
+/*  public Contact withContactGroup(String contactGroup) {
     this.contactGroup = contactGroup;
     return this;
-  }
+  }*/
 
   public Contact withSecondaryAddress(String secondaryAddress) {
     this.secondaryAddress = secondaryAddress;
@@ -353,9 +361,9 @@ public class Contact {
     return anniversaryYear;
   }
 
-  public String getContactGroup() {
+/*  public String getContactGroup() {
     return contactGroup;
-  }
+  }*/
 
   public String getSecondaryAddress() {
     return secondaryAddress;
@@ -377,6 +385,9 @@ public class Contact {
     return allEmails;
   }
 
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -444,4 +455,8 @@ public class Contact {
             '}';
   }
 
+  public Contact inGroup(Group group) {
+    groups.add(group);
+    return this;
+  }
 }
