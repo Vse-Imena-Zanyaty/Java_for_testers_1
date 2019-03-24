@@ -36,6 +36,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="Lecture22.addressbook.objects.Group"/>
+        <mapping class="Lecture22.addressbook.objects.Contact"/>
 
     </session-factory>
 

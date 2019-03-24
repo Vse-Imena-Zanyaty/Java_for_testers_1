@@ -1,6 +1,6 @@
 package Lecture22.addressbook.tests;
 
-import Lecture22.addressbook.objects.Group;
+import Lecture22.addressbook.objects.Contact;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -35,9 +35,13 @@ public class HBconnection {
   public void testHibernateConnection() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<Group> result = session.createQuery("from Group").list();
+/*    List<Group> result = session.createQuery("from Group").list();
     for (Group group : result) {
       System.out.println(group);
+    }*/
+    List<Contact> result = session.createQuery("from Contact where deprecated = '0000-00-00'").list();
+    for (Contact contact : result) {
+      System.out.println(contact);
     }
     session.getTransaction().commit();
     session.close();

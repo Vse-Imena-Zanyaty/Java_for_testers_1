@@ -59,10 +59,10 @@ public class ContactMethods extends BasicMethods {
     type(By.name("email2"), contact.getEmail_2());
     type(By.name("email3"), contact.getEmail_3());
     type(By.name("homepage"), contact.getInternet_page());
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contact.getBirthDate());
+    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(String.valueOf(contact.getBirthDate()));
     new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contact.getBirthMonth());
     type(By.name("byear"), contact.getBirthYear());
-    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(contact.getAnniversaryDay());
+    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(String.valueOf(contact.getAnniversaryDay()));
     new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contact.getAnniversaryMonth());
     type(By.name("ayear"), contact.getAnniversaryYear());
     if (creation) {

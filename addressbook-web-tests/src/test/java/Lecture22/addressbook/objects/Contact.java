@@ -3,67 +3,116 @@ package Lecture22.addressbook.objects;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class Contact {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int ID = Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private String firstName;
   @Expose
+  @Column(name = "middlename")
   private String middleName;
   @Expose
+  @Column(name = "lastname")
   private String lastName;
   @Expose
+  @Column(name = "nickname")
   private String nickname;
   @Expose
+  @Column(name = "title")
   private String title;
   @Expose
+  @Column(name = "company")
   private String company;
   @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
   @Expose
+  @Column(name = "home")
+  @Type(type = "text")
   private String numberHome;
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String numberMobile;
   @Expose
+  @Column(name = "work")
+  @Type(type = "text")
   private String numberWork;
   @Expose
+  @Column(name = "fax")
+  @Type(type = "text")
   private String numberFax;
   @Expose
+  @Column(name = "email")
+  @Type(type = "text")
   private String email_1;
   @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email_2;
   @Expose
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email_3;
   @Expose
+  @Column(name = "homepage")
+  @Type(type = "text")
   private String internet_page;
   @Expose
-  private String birthDate;
+  @Column(name = "bday")
+  @Type(type = "byte")
+  private byte birthDate;
   @Expose
+  @Column(name = "bmonth")
   private String birthMonth;
   @Expose
+  @Column(name = "byear")
   private String birthYear;
   @Expose
-  private String anniversaryDay;
+  @Column(name = "aday")
+  @Type(type = "byte")
+  private byte anniversaryDay;
   @Expose
+  @Column(name = "amonth")
   private String anniversaryMonth;
   @Expose
+  @Column(name = "ayear")
   private String anniversaryYear;
   @Expose
+  @Transient
   private String contactGroup;
   @Expose
+  @Column(name = "address2")
+  @Type(type = "text")
   private String secondaryAddress;
   @Expose
+  @Column(name = "phone2")
+  @Type(type = "text")
   private String secondaryHome;
   @Expose
+  @Column(name = "notes")
+  @Type(type = "text")
   private String secondaryNotes;
+  @Transient
   private String allPhones;
+  @Transient
   private String allEmails;
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
 
   public Contact withID(int ID) {
@@ -146,7 +195,7 @@ public class Contact {
     return this;
   }
 
-  public Contact withBirthDate(String birthDate) {
+  public Contact withBirthDate(byte birthDate) {
     this.birthDate = birthDate;
     return this;
   }
@@ -161,7 +210,7 @@ public class Contact {
     return this;
   }
 
-  public Contact withAnniversaryDay(String anniversaryDay) {
+  public Contact withAnniversaryDay(byte anniversaryDay) {
     this.anniversaryDay = anniversaryDay;
     return this;
   }
@@ -207,7 +256,7 @@ public class Contact {
   }
 
   public Contact withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -275,7 +324,7 @@ public class Contact {
     return internet_page;
   }
 
-  public String getBirthDate() {
+  public byte getBirthDate() {
     return birthDate;
   }
 
@@ -287,7 +336,7 @@ public class Contact {
     return birthYear;
   }
 
-  public String getAnniversaryDay() {
+  public byte getAnniversaryDay() {
     return anniversaryDay;
   }
 
@@ -324,7 +373,7 @@ public class Contact {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   @Override
