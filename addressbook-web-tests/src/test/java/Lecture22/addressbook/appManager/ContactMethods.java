@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.io.File;
 import java.util.List;
 
 public class ContactMethods extends BasicMethods {
@@ -75,6 +76,15 @@ public class ContactMethods extends BasicMethods {
     type(By.name("notes"), contact.getSecondaryNotes());
   }
 
+  public void contactExists(AppManager app) {
+    if (all().size() == 0) {
+      File photo = new File("src/test/resources/image.jpg");
+      create(new Contact().withFirstName("first_name").withLastName("last_name")
+              .withPhoto(photo).withBirthDate((byte) 1).withAnniversaryDay((byte) 2)
+              .withBirthMonth("October").withAnniversaryMonth("April").withContactGroup("[none]"), app);
+    }
+  }
+
   public void create(Contact contact, AppManager app) {
     app.goTo().contactCreationPage();
     fillForm(contact, true);
@@ -105,12 +115,6 @@ public class ContactMethods extends BasicMethods {
     acceptAlert();
     contactCache = null;
     app.goTo().homePage();
-  }
-
-  public void contactExists(AppManager app) {
-    if (all().size() == 0) {
-      create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
-    }
   }
 
   public int count() {

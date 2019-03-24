@@ -140,6 +140,11 @@ public class Contact {
     return this;
   }
 
+  public Contact withPhoto(File photo) {
+    this.photo = photo.getPath();
+    return this;
+  }
+
   public Contact withTitle(String title) {
     this.title = title;
     return this;
@@ -255,10 +260,6 @@ public class Contact {
     return this;
   }
 
-  public Contact withPhoto(File photo) {
-    this.photo = photo.getPath();
-    return this;
-  }
 
   public int getID() {
     return ID;
@@ -278,6 +279,10 @@ public class Contact {
 
   public String getNickname() {
     return nickname;
+  }
+
+  public File getPhoto() {
+    return new File(photo);
   }
 
   public String getTitle() {
@@ -372,9 +377,6 @@ public class Contact {
     return allEmails;
   }
 
-  public File getPhoto() {
-    return new File(photo);
-  }
 
   @Override
   public String toString() {
