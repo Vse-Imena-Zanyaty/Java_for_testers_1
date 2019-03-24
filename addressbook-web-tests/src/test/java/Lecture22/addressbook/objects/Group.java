@@ -81,11 +81,13 @@ public class Group {
     if (o == null || getClass() != o.getClass()) return false;
     Group group = (Group) o;
     return ID == group.ID &&
-            Objects.equals(name, group.name);
+            Objects.equals(name, group.name) &&
+            Objects.equals(header, group.header) &&
+            Objects.equals(footer, group.footer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ID, name);
+    return Objects.hash(ID, name, header, footer);
   }
 }

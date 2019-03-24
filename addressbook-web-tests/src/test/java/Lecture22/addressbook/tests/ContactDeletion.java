@@ -12,16 +12,18 @@ public class ContactDeletion extends CommonMethods {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.contactMethods().contactExists(app);
+    if (app.db().contacts().size() ==0) {
+      app.contactMethods().fastCreate(app);
+    }
   }
 
   @Test
   public void testContactDeletion() {
-    Contacts before = app.contactMethods().all();
+    Contacts before = app.db().contacts();
     Contact deletedContact = before.iterator().next();
     app.contactMethods().delete(deletedContact, app);
     assertThat(app.contactMethods().count(), equalTo(before.size() - 1));
-    Contacts after = app.contactMethods().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(deletedContact)));
   }
 }

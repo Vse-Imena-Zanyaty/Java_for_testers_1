@@ -30,11 +30,11 @@ public class Contact {
   @Column(name = "nickname")
   private String nickname;
   @Expose
-  @Column(name = "title")
-  private String title;
-  @Expose
   @Column(name = "company")
   private String company;
+  @Expose
+  @Column(name = "title")
+  private String title;
   @Expose
   @Column(name = "address")
   @Type(type = "text")
@@ -145,13 +145,13 @@ public class Contact {
     return this;
   }
 
-  public Contact withTitle(String title) {
-    this.title = title;
+  public Contact withCompany(String company) {
+    this.company = company;
     return this;
   }
 
-  public Contact withCompany(String company) {
-    this.company = company;
+  public Contact withTitle(String title) {
+    this.title = title;
     return this;
   }
 
@@ -285,12 +285,12 @@ public class Contact {
     return new File(photo);
   }
 
-  public String getTitle() {
-    return title;
-  }
-
   public String getCompany() {
     return company;
+  }
+
+  public String getTitle() {
+    return title;
   }
 
   public String getAddress() {
@@ -379,26 +379,69 @@ public class Contact {
 
 
   @Override
-  public String toString() {
-    return "Contact{" +
-            "ID=" + ID +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            '}';
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Contact contact = (Contact) o;
     return ID == contact.ID &&
+            birthDate == contact.birthDate &&
+            anniversaryDay == contact.anniversaryDay &&
             Objects.equals(firstName, contact.firstName) &&
-            Objects.equals(lastName, contact.lastName);
+            Objects.equals(middleName, contact.middleName) &&
+            Objects.equals(lastName, contact.lastName) &&
+            Objects.equals(nickname, contact.nickname) &&
+            Objects.equals(company, contact.company) &&
+            Objects.equals(title, contact.title) &&
+            Objects.equals(address, contact.address) &&
+            Objects.equals(numberHome, contact.numberHome) &&
+            Objects.equals(numberMobile, contact.numberMobile) &&
+            Objects.equals(numberWork, contact.numberWork) &&
+            Objects.equals(numberFax, contact.numberFax) &&
+            Objects.equals(email_1, contact.email_1) &&
+            Objects.equals(email_2, contact.email_2) &&
+            Objects.equals(email_3, contact.email_3) &&
+            Objects.equals(internet_page, contact.internet_page) &&
+            Objects.equals(birthMonth, contact.birthMonth) &&
+            Objects.equals(birthYear, contact.birthYear) &&
+            Objects.equals(anniversaryYear, contact.anniversaryYear) &&
+            Objects.equals(secondaryAddress, contact.secondaryAddress) &&
+            Objects.equals(secondaryHome, contact.secondaryHome) &&
+            Objects.equals(secondaryNotes, contact.secondaryNotes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ID, firstName, lastName);
+    return Objects.hash(ID, firstName, middleName, lastName, nickname, company, title, address, numberHome, numberMobile, numberWork, numberFax, email_1, email_2, email_3, internet_page, birthDate, birthMonth, birthYear, anniversaryDay, anniversaryYear, secondaryAddress, secondaryHome, secondaryNotes);
   }
+
+  @Override
+  public String toString() {
+    return "Contact{" +
+            "ID=" + ID +
+            ", firstName='" + firstName + '\'' +
+            ", middleName='" + middleName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", company='" + company + '\'' +
+            ", title='" + title + '\'' +
+            ", address='" + address + '\'' +
+            ", numberHome='" + numberHome + '\'' +
+            ", numberMobile='" + numberMobile + '\'' +
+            ", numberWork='" + numberWork + '\'' +
+            ", numberFax='" + numberFax + '\'' +
+            ", email_1='" + email_1 + '\'' +
+            ", email_2='" + email_2 + '\'' +
+            ", email_3='" + email_3 + '\'' +
+            ", internet_page='" + internet_page + '\'' +
+            ", birthDate=" + birthDate +
+            ", birthMonth='" + birthMonth + '\'' +
+            ", birthYear='" + birthYear + '\'' +
+            ", anniversaryDay=" + anniversaryDay +
+            ", anniversaryYear='" + anniversaryYear + '\'' +
+            ", secondaryAddress='" + secondaryAddress + '\'' +
+            ", secondaryHome='" + secondaryHome + '\'' +
+            ", secondaryNotes='" + secondaryNotes + '\'' +
+            '}';
+  }
+
 }

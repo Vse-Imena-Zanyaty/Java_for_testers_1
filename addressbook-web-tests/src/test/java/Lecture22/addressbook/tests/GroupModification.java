@@ -12,18 +12,21 @@ public class GroupModification extends CommonMethods {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.groupMethods().groupExists(app);
+    if (app.db().groups().size() ==0) {
+      app.goTo().GroupPage();
+      app.groupMethods().create(new Group().withName("name"), app);
+    } else { app.goTo().GroupPage(); }
   }
 
   @Test
   public void testEditGroup() {
-    Groups before = app.groupMethods().all();
+    Groups before = app.db().groups();
     Group modifiedGroup = before.iterator().next();
     Group group = new Group()
             .withID(modifiedGroup.getID()).withName("edited_name").withHeader("edited_header").withFooter("edited_footer");
     app.groupMethods().modify(group);
     assertThat(app.groupMethods().count(), equalTo(before.size()));
-    Groups after = app.groupMethods().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }
 }

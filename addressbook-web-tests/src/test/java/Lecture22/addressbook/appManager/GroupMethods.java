@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupMethods extends BasicMethods {
 
@@ -43,8 +41,8 @@ public class GroupMethods extends BasicMethods {
   }*/
 
   public void selectByID(int ID) {
-   wd.findElement(By.cssSelector("input[value='" + ID + "']")).click();
-   // wd.findElement(By.cssSelector(String.format("input[value='%s'}", ID))).click();
+    wd.findElement(By.cssSelector("input[value='" + ID + "']")).click();
+    // wd.findElement(By.cssSelector(String.format("input[value='%s'}", ID))).click();
   }
 
   public void initModification() {
@@ -86,16 +84,12 @@ public class GroupMethods extends BasicMethods {
     returnToGroupPage();
   }
 
-//  public boolean groupExists() {
-//    return isElementPresent(By.name("selected[]"));
-//  }
-
-  public void groupExists(AppManager app) {
+/*  public void groupExists(AppManager app) {
     app.goTo().GroupPage();
     if (all().size() == 0) {
       create(new Group().withName("name"), app);
     }
-  }
+  }*/
 
   public int count() {
     return wd.findElements(By.name("selected[]")).size();

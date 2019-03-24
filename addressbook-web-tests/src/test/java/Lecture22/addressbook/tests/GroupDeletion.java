@@ -12,16 +12,19 @@ public class GroupDeletion extends CommonMethods {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.groupMethods().groupExists(app);
+    if (app.db().groups().size() ==0) {
+      app.goTo().GroupPage();
+      app.groupMethods().create(new Group().withName("name"), app);
+    } else { app.goTo().GroupPage(); }
   }
 
   @Test
   public void testGroupDeletion() {
-    Groups before = app.groupMethods().all();
+    Groups before = app.db().groups();
     Group deletedGroup = before.iterator().next();
     app.groupMethods().delete(deletedGroup);
     assertThat(app.groupMethods().count(), equalTo(before.size() - 1));
-    Groups after = app.groupMethods().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(deletedGroup)));
   }
 }

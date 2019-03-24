@@ -5,8 +5,6 @@ import Lecture22.addressbook.objects.Groups;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -57,23 +55,23 @@ public class GroupCreation extends CommonMethods {
   @Test(dataProvider = "validGroupsFromJSON")
   public void testGroupCreation(Group group) {
     app.goTo().GroupPage();
-    Groups before = app.groupMethods().all();
+    Groups before = app.db().groups();
     app.groupMethods().create(group, app);
     assertThat(app.groupMethods().count(), equalTo(before.size() + 1));
-    Groups after = app.groupMethods().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before
             .withAdded(group.withID(after.stream().mapToInt((g) -> g.getID()).max().getAsInt()))));
   }
 
-  @Test
+  @Test(enabled = false)
   public void testBadGroupCreation() {
     app.goTo().GroupPage();
-    Groups before = app.groupMethods().all();
+    Groups before = app.db().groups();
     Group group = new Group()
             .withName("name'").withHeader("header").withFooter("footer");
     app.groupMethods().create(group, app);
     assertThat(app.groupMethods().count(), equalTo(before.size()));
-    Groups after = app.groupMethods().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before));
   }
 }

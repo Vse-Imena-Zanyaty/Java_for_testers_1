@@ -49,8 +49,8 @@ public class ContactMethods extends BasicMethods {
     type(By.name("lastname"), contact.getLastName());
     type(By.name("nickname"), contact.getNickname());
     attach(By.name("photo"), contact.getPhoto());
-    type(By.name("title"), contact.getTitle());
     type(By.name("company"), contact.getCompany());
+    type(By.name("title"), contact.getTitle());
     type(By.name("address"), contact.getAddress());
     type(By.name("home"), contact.getNumberHome());
     type(By.name("mobile"), contact.getNumberMobile());
@@ -76,13 +76,11 @@ public class ContactMethods extends BasicMethods {
     type(By.name("notes"), contact.getSecondaryNotes());
   }
 
-  public void contactExists(AppManager app) {
-    if (all().size() == 0) {
-      File photo = new File("src/test/resources/image.jpg");
-      create(new Contact().withFirstName("first_name").withLastName("last_name")
-              .withPhoto(photo).withBirthDate((byte) 1).withAnniversaryDay((byte) 2)
-              .withBirthMonth("October").withAnniversaryMonth("April").withContactGroup("[none]"), app);
-    }
+  public void fastCreate(AppManager app) {
+    File photo = new File("src/test/resources/image.jpg");
+    create(new Contact().withFirstName("first_name").withLastName("last_name")
+            .withPhoto(photo).withBirthDate((byte) 1).withAnniversaryDay((byte) 2)
+            .withBirthMonth("October").withAnniversaryMonth("April").withContactGroup("[none]"), app);
   }
 
   public void create(Contact contact, AppManager app) {

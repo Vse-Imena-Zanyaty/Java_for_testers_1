@@ -21,6 +21,7 @@ public class AppManager {
   private GroupMethods groupMethods;
   private ContactMethods contactMethods;
   private String browser;
+  private DatabaseManager databaseManager;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -30,6 +31,8 @@ public class AppManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+    databaseManager = new DatabaseManager();
 
     if (browser.equals(BrowserType.CHROME)) {
       properties.getProperty("webdriver.chrome.wd");
@@ -64,5 +67,9 @@ public class AppManager {
 
   public ContactMethods contactMethods() {
     return contactMethods;
+  }
+
+  public DatabaseManager db() {
+    return databaseManager;
   }
 }

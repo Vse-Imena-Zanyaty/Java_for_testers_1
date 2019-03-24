@@ -14,7 +14,9 @@ public class ContactEmail extends CommonMethods {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.contactMethods().contactExists(app);
+    if (app.db().contacts().size() ==0) {
+      app.contactMethods().fastCreate(app);
+    }
   }
 
   @Test

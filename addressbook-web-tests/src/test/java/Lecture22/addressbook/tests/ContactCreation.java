@@ -2,6 +2,7 @@ package Lecture22.addressbook.tests;
 
 import Lecture22.addressbook.objects.Contact;
 import Lecture22.addressbook.objects.Contacts;
+import Lecture22.addressbook.objects.Group;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
@@ -25,8 +26,11 @@ public class ContactCreation extends CommonMethods {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.groupMethods().groupExists(app);
-    app.goTo().homePage();
+    if (app.db().groups().size() ==0) {
+      app.goTo().GroupPage();
+      app.groupMethods().create(new Group().withName("name"), app);
+      app.goTo().homePage();
+    }
   }
 
   @DataProvider
@@ -47,16 +51,16 @@ public class ContactCreation extends CommonMethods {
 
   @Test(dataProvider = "validContactsFromJSON")
   public void testContactCreation(Contact contact) {
-    Contacts before = app.contactMethods().all();
+    Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/image.jpg");
     app.contactMethods().create(contact.withPhoto(photo), app);
     assertThat(app.contactMethods().count(), equalTo(before.size() + 1));
-    Contacts after = app.contactMethods().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before
             .withAdded(contact.withID(after.stream().mapToInt((c) -> c.getID()).max().getAsInt()))));
   }
 
-  @Test
+  @Test(enabled = false)
   public void testCurrentDir() {
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());

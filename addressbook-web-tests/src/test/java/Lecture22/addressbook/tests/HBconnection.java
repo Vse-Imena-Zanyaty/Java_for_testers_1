@@ -31,7 +31,7 @@ public class HBconnection {
     }
   }
 
-  @Test
+  @Test(enabled = false)
   public void testHibernateConnection() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();

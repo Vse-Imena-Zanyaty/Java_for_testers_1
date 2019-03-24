@@ -2,6 +2,7 @@ package Lecture22.addressbook.objects;
 
 import com.google.common.collect.ForwardingSet;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,10 @@ public class Groups extends ForwardingSet<Group> {
 
   public Groups() {
     this.delegate = new HashSet<Group>();
+  }
+
+  public Groups(Collection<Group> groups) {
+    this.delegate = new HashSet<Group>(groups);
   }
 
   @Override
