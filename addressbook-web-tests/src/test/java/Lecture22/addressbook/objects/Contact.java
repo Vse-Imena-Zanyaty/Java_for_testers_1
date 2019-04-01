@@ -3,7 +3,6 @@ package Lecture22.addressbook.objects;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import net.bytebuddy.build.Plugin;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -94,9 +93,9 @@ public class Contact {
   @Expose
   @Column(name = "ayear")
   private String anniversaryYear;
-/*  @Expose
-  @Transient
-  private String contactGroup;*/
+  /*  @Expose
+    @Transient
+    private String contactGroup;*/
   @Expose
   @Column(name = "address2")
   @Type(type = "text")
@@ -290,7 +289,11 @@ public class Contact {
   }
 
   public File getPhoto() {
-    return new File(photo);
+    if (photo == null) {
+      return null;
+    } else {
+      return new File(photo);
+    }
   }
 
   public String getCompany() {

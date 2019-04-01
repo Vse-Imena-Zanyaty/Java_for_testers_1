@@ -2,6 +2,7 @@ package Lecture22.addressbook.appManager;
 
 import Lecture22.addressbook.objects.Contact;
 import Lecture22.addressbook.objects.Contacts;
+import Lecture22.addressbook.objects.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -70,7 +71,7 @@ public class ContactMethods extends BasicMethods {
       if (contact.getGroups().size() > 0) {
         Assert.assertTrue(contact.getGroups().size() == 1);
       }
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -80,10 +81,7 @@ public class ContactMethods extends BasicMethods {
   }
 
   public void fastCreate(AppManager app) {
-    File photo = new File("src/test/resources/image.jpg");
-    create(new Contact().withFirstName("first_name").withLastName("last_name")
-            .withPhoto(photo).withBirthDate((byte) 1).withAnniversaryDay((byte) 2)
-            .withBirthMonth("October").withAnniversaryMonth("April"), app);
+    create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
   }
 
   public void create(Contact contact, AppManager app) {
@@ -101,6 +99,22 @@ public class ContactMethods extends BasicMethods {
     submitModification();
     contactCache = null;
     app.goTo().returnHome();
+  }
+
+  public void addToGroup(Contact contact, Group group) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
+    selectByID(contact.getID());
+    wd.findElement(By.name("to_group")).click();
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("" + group.getName() + "");
+    wd.findElement(By.name("add")).click();
+    wd.findElement(By.linkText("group page \"" + group.getName() + "\"")).click();
+  }
+
+  public void assertAdding(Contact contact) {
+    if (isElementPresent(By.id("" + contact.getID() + ""))) {
+      return;
+    }
+    System.out.println("Contact cannot be found or was not added to Group");
   }
 
 /*  public void delete(int index, AppManager app) {
