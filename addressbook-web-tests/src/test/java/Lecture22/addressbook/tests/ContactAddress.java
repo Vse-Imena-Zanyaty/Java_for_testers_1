@@ -12,7 +12,7 @@ public class ContactAddress extends CommonMethods {
   @BeforeMethod
   public void ensurePreconditions() {
     if (app.db().contacts().size() ==0) {
-      app.contactMethods().fastCreate(app);
+      app.contactMethods().create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
     }
   }
 

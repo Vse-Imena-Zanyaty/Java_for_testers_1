@@ -61,4 +61,24 @@ public class DatabaseManager {
     session.close();
     return new Contacts(result);
   }
+
+  public Contacts contactsWithGroups() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<Contact> result = session.createNativeQuery
+            ("SELECT DISTINCT addressbook.* FROM addressbook INNER JOIN address_in_groups on address_in_groups.id = addressbook.id WHERE addressbook.deprecated = '0000-00-00'", Contact.class).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result);
+  }
+
+  public Groups groupsWithContacts() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<Group> result = session.createNativeQuery
+            ("SELECT DISTINCT group_list.* FROM group_list LEFT JOIN address_in_groups on address_in_groups.group_id = group_list.group_id", Group.class).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Groups(result);
+  }
 }

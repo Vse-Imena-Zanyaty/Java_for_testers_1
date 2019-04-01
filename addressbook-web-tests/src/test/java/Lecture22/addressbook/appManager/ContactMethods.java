@@ -49,8 +49,8 @@ public class ContactMethods extends BasicMethods {
     type(By.name("lastname"), contact.getLastName());
     type(By.name("nickname"), contact.getNickname());
     attach(By.name("photo"), contact.getPhoto());
-    type(By.name("company"), contact.getCompany());
     type(By.name("title"), contact.getTitle());
+    type(By.name("company"), contact.getCompany());
     type(By.name("address"), contact.getAddress());
     type(By.name("home"), contact.getNumberHome());
     type(By.name("mobile"), contact.getNumberMobile());
@@ -78,18 +78,15 @@ public class ContactMethods extends BasicMethods {
       if (contact.getGroups().size() > 0) {
         Assert.assertTrue(contact.getGroups().size() == 1);
       }
-      while (contact.getGroups().iterator().hasNext())
+      if (contact.getGroups().iterator().hasNext()) {
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
     type(By.name("address2"), contact.getSecondaryAddress());
     type(By.name("phone2"), contact.getSecondaryHome());
     type(By.name("notes"), contact.getSecondaryNotes());
-  }
-
-  public void fastCreate(AppManager app) {
-    create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
   }
 
   public void create(Contact contact, AppManager app) {
@@ -116,13 +113,23 @@ public class ContactMethods extends BasicMethods {
     new Select(wd.findElement(By.name("to_group"))).selectByValue("" + group.getID() + "");
     wd.findElement(By.name("add")).click();
     wd.findElement(By.linkText("group page \"" + group.getName() + "\"")).click();
+    contactCache = null;
+  }
+
+  public void removeFromGroup(Contact contact, Group group) {
+    new Select(wd.findElement(By.name("group"))).selectByValue("" + group.getID() + "");
+    selectByID(contact.getID());
+    wd.findElement(By.name("remove")).click();
+    wd.findElement(By.linkText("group page \"" + group.getName() + "\"")).click();
+    contactCache = null;
   }
 
   public void assertAdding(Contact contact) {
-    if (isElementPresent(By.id("" + contact.getID() + ""))) {
-      return;
-    }
-    System.out.println("Contact cannot be found or was not added to Group");
+    Assert.assertTrue(isElementPresent(By.id("" + contact.getID() + "")));
+  }
+
+  public void assertRemoving(Contact contact) {
+    Assert.assertFalse(isElementPresent(By.id("" + contact.getID() + "")));
   }
 
 /*  public void delete(int index, AppManager app) {

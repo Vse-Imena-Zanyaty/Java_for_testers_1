@@ -14,7 +14,7 @@ public class GroupDeletion extends CommonMethods {
   public void ensurePreconditions() {
     if (app.db().groups().size() ==0) {
       app.goTo().GroupPage();
-      app.groupMethods().create(new Group().withName("name"), app);
+      app.groupMethods().create(new Group().withName("testGroupDeletion"), app);
     } else { app.goTo().GroupPage(); }
   }
 
