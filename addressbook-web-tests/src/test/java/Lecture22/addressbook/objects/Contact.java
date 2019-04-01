@@ -341,11 +341,7 @@ public class Contact {
   }
 
   public Byte getBirthDate() {
-    if (birthDate == null) {
-      return null;
-    } else {
-      return birthDate;
-    }
+    return birthDate;
   }
 
   public String getBirthMonth() {
@@ -357,11 +353,7 @@ public class Contact {
   }
 
   public Byte getAnniversaryDay() {
-    if (anniversaryDay == null) {
-      return null;
-    } else {
-      return anniversaryDay;
-    }
+    return anniversaryDay;
   }
 
   public String getAnniversaryMonth() {
@@ -398,6 +390,11 @@ public class Contact {
 
   public Groups getGroups() {
     return new Groups(groups);
+  }
+
+  public Contact inGroup(Group group) {
+    groups.add(group);
+    return this;
   }
 
   @Override
@@ -464,10 +461,5 @@ public class Contact {
             ", secondaryHome='" + secondaryHome + '\'' +
             ", secondaryNotes='" + secondaryNotes + '\'' +
             '}';
-  }
-
-  public Contact inGroup(Group group) {
-    groups.add(group);
-    return this;
   }
 }

@@ -61,16 +61,25 @@ public class ContactMethods extends BasicMethods {
     type(By.name("email2"), contact.getEmail_2());
     type(By.name("email3"), contact.getEmail_3());
     type(By.name("homepage"), contact.getInternet_page());
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(String.valueOf(contact.getBirthDate()));
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contact.getBirthMonth());
+    if (contact.getBirthDate() != null) {
+      new Select(wd.findElement(By.name("bday"))).selectByVisibleText(String.valueOf(contact.getBirthDate()));
+    }
+    if (contact.getBirthMonth() != null) {
+      new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contact.getBirthMonth());
+    }
     type(By.name("byear"), contact.getBirthYear());
-    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(String.valueOf(contact.getAnniversaryDay()));
-    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contact.getAnniversaryMonth());
+    if (contact.getAnniversaryDay() != null) {
+      new Select(wd.findElement(By.name("aday"))).selectByVisibleText(String.valueOf(contact.getAnniversaryDay()));
+    }
+    if (contact.getAnniversaryMonth() != null) {
+      new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contact.getAnniversaryMonth());
+    }
     type(By.name("ayear"), contact.getAnniversaryYear());
     if (creation) {
       if (contact.getGroups().size() > 0) {
         Assert.assertTrue(contact.getGroups().size() == 1);
       }
+      while (contact.getGroups().iterator().hasNext())
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));

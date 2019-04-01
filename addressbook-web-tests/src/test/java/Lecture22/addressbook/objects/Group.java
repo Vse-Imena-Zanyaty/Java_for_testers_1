@@ -58,6 +58,9 @@ public class Group {
   }
 
   public String getName() {
+/*    if (name == null) {
+      return null;
+    } else {*/
     return name;
   }
 
