@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.io.File;
 import java.util.List;
 
 public class ContactMethods extends BasicMethods {
@@ -80,7 +79,7 @@ public class ContactMethods extends BasicMethods {
         Assert.assertTrue(contact.getGroups().size() == 1);
       }
       while (contact.getGroups().iterator().hasNext())
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -114,7 +113,7 @@ public class ContactMethods extends BasicMethods {
     new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
     selectByID(contact.getID());
     wd.findElement(By.name("to_group")).click();
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("" + group.getName() + "");
+    new Select(wd.findElement(By.name("to_group"))).selectByValue("" + group.getID() + "");
     wd.findElement(By.name("add")).click();
     wd.findElement(By.linkText("group page \"" + group.getName() + "\"")).click();
   }
