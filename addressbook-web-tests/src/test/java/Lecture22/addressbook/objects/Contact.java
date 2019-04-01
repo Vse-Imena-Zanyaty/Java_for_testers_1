@@ -76,7 +76,7 @@ public class Contact {
   @Expose
   @Column(name = "bday")
   @Type(type = "byte")
-  private byte birthDate;
+  private Byte birthDate;
   @Expose
   @Column(name = "bmonth")
   private String birthMonth;
@@ -86,7 +86,7 @@ public class Contact {
   @Expose
   @Column(name = "aday")
   @Type(type = "byte")
-  private byte anniversaryDay;
+  private Byte anniversaryDay;
   @Expose
   @Column(name = "amonth")
   private String anniversaryMonth;
@@ -207,7 +207,7 @@ public class Contact {
     return this;
   }
 
-  public Contact withBirthDate(byte birthDate) {
+  public Contact withBirthDate(Byte birthDate) {
     this.birthDate = birthDate;
     return this;
   }
@@ -222,7 +222,7 @@ public class Contact {
     return this;
   }
 
-  public Contact withAnniversaryDay(byte anniversaryDay) {
+  public Contact withAnniversaryDay(Byte anniversaryDay) {
     this.anniversaryDay = anniversaryDay;
     return this;
   }
@@ -340,8 +340,12 @@ public class Contact {
     return internet_page;
   }
 
-  public byte getBirthDate() {
-    return birthDate;
+  public Byte getBirthDate() {
+    if (birthDate == null) {
+      return null;
+    } else {
+      return birthDate;
+    }
   }
 
   public String getBirthMonth() {
@@ -352,8 +356,12 @@ public class Contact {
     return birthYear;
   }
 
-  public byte getAnniversaryDay() {
-    return anniversaryDay;
+  public Byte getAnniversaryDay() {
+    if (anniversaryDay == null) {
+      return null;
+    } else {
+      return anniversaryDay;
+    }
   }
 
   public String getAnniversaryMonth() {
@@ -398,8 +406,6 @@ public class Contact {
     if (o == null || getClass() != o.getClass()) return false;
     Contact contact = (Contact) o;
     return ID == contact.ID &&
-            birthDate == contact.birthDate &&
-            anniversaryDay == contact.anniversaryDay &&
             Objects.equals(firstName, contact.firstName) &&
             Objects.equals(middleName, contact.middleName) &&
             Objects.equals(lastName, contact.lastName) &&
@@ -415,8 +421,10 @@ public class Contact {
             Objects.equals(email_2, contact.email_2) &&
             Objects.equals(email_3, contact.email_3) &&
             Objects.equals(internet_page, contact.internet_page) &&
+            Objects.equals(birthDate, contact.birthDate) &&
             Objects.equals(birthMonth, contact.birthMonth) &&
             Objects.equals(birthYear, contact.birthYear) &&
+            Objects.equals(anniversaryDay, contact.anniversaryDay) &&
             Objects.equals(anniversaryYear, contact.anniversaryYear) &&
             Objects.equals(secondaryAddress, contact.secondaryAddress) &&
             Objects.equals(secondaryHome, contact.secondaryHome) &&
