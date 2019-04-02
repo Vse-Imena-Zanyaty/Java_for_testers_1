@@ -32,11 +32,11 @@ public class RemoveContactFromGroup extends CommonMethods {
   @Test
   public void testRemovingContactFromGroup() {
     Contact modifiedContact = app.db().contactsWithGroups().iterator().next();
-    Groups contactGroupsBefore = modifiedContact.getGroups();
+    Groups contactGroupsBefore = new Groups(modifiedContact.getGroups());
     Group modifiedGroup = contactGroupsBefore.iterator().next();
     app.contactMethods().removeFromGroup(modifiedContact, modifiedGroup);
     app.contactMethods().assertRemoving(modifiedContact);
-    Groups contactGroupsAfter = modifiedContact.getGroups();
+    Groups contactGroupsAfter = new Groups(modifiedContact.getGroups());
     assertThat(contactGroupsAfter, equalTo(contactGroupsBefore.withAdded(modifiedGroup)));
   }
 }

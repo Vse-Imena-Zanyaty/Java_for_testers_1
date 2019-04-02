@@ -26,11 +26,11 @@ public class AddContactToGroup extends CommonMethods {
   @Test
   public void testAddingContactToGroup() {
     Contact modifiedContact = app.db().contactsWithoutGroups().iterator().next();
-    Groups contactGroupsBefore = modifiedContact.getGroups();
+    Groups contactGroupsBefore = new Groups(modifiedContact.getGroups());
     Group modifiedGroup = app.db().groupsWithoutContacts().iterator().next();
     app.contactMethods().addToGroup(modifiedContact, modifiedGroup);
     app.contactMethods().assertAdding(modifiedContact);
-    Groups contactGroupsAfter = modifiedContact.getGroups();
+    Groups contactGroupsAfter = new Groups(modifiedContact.getGroups());
     assertThat(contactGroupsAfter, equalTo(contactGroupsBefore.without(modifiedGroup)));
   }
 }
