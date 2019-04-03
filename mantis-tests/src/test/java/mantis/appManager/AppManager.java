@@ -19,6 +19,7 @@ public class AppManager {
   private String browser;
   private RegistrationMethods registrationMethods;
   private FtpMethods ftp;
+  private MailServer mailServer;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -31,7 +32,7 @@ public class AppManager {
   }
 
   public void stop() {
-    if (wd != null){
+    if (wd != null) {
       wd.quit();
     }
   }
@@ -74,5 +75,12 @@ public class AppManager {
       wd.get(properties.getProperty("web.baseUrl"));
     }
     return wd;
+  }
+
+  public MailServer mail() {
+    if (mailServer == null) {
+      mailServer = new MailServer(this);
+    }
+    return mailServer;
   }
 }
