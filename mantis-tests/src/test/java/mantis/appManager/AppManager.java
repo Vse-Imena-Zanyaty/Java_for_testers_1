@@ -17,10 +17,11 @@ public class AppManager {
   private WebDriver wd;
 
   private String browser;
-  private RegistrationMethods registrationMethods;
+  private UiMethods uiMethods;
   private FtpMethods ftp;
   private MailServer mailServer;
   private JamesServer jamesServer;
+  private DatabaseManager databaseManager;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -30,6 +31,8 @@ public class AppManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+    databaseManager = new DatabaseManager();
   }
 
   public void stop() {
@@ -46,11 +49,18 @@ public class AppManager {
     return properties.getProperty(key);
   }
 
-  public RegistrationMethods registration() {
-    if (registrationMethods == null) {
-      registrationMethods = new RegistrationMethods(this);
+/*  public UiMethods registration() {
+    if (uiMethods == null) {
+      uiMethods = new UiMethods(this);
     }
-    return registrationMethods;
+    return uiMethods;
+  }*/
+
+  public UiMethods uiMethods() {
+    if (uiMethods == null) {
+      uiMethods = new UiMethods(this);
+    }
+    return uiMethods;
   }
 
   public FtpMethods ftp() {
@@ -90,5 +100,9 @@ public class AppManager {
       jamesServer = new JamesServer(this);
     }
     return jamesServer;
+  }
+
+  public DatabaseManager db() {
+    return databaseManager;
   }
 }
