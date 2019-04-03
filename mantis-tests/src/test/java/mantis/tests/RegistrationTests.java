@@ -9,5 +9,4 @@ public class RegistrationTests extends CommonMethods{
     app.registration().start("user", "user@localhost.localdomain");
 
   }
-
 }

@@ -18,6 +18,7 @@ public class AppManager {
 
   private String browser;
   private RegistrationMethods registrationMethods;
+  private FtpMethods ftp;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -48,6 +49,13 @@ public class AppManager {
       registrationMethods = new RegistrationMethods(this);
     }
     return registrationMethods;
+  }
+
+  public FtpMethods ftp() {
+    if (ftp == null) {
+      ftp = new FtpMethods(this);
+    }
+    return ftp;
   }
 
   public WebDriver getDriver() {
