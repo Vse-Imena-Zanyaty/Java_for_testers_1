@@ -20,6 +20,7 @@ public class AppManager {
   private RegistrationMethods registrationMethods;
   private FtpMethods ftp;
   private MailServer mailServer;
+  private JamesServer jamesServer;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -82,5 +83,12 @@ public class AppManager {
       mailServer = new MailServer(this);
     }
     return mailServer;
+  }
+
+  public JamesServer james() {
+    if (jamesServer == null) {
+      jamesServer = new JamesServer(this);
+    }
+    return jamesServer;
   }
 }
