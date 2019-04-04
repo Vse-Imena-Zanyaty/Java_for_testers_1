@@ -23,7 +23,7 @@ import java.util.Arrays;
 
 public class CommonMethods {
 
-  Logger logger = LoggerFactory.getLogger(CommonMethods.class);
+  private Logger logger = LoggerFactory.getLogger(CommonMethods.class);
 
   public static final AppManager app
           = new AppManager(System.getProperty("browser", BrowserType.CHROME));
@@ -39,7 +39,7 @@ public class CommonMethods {
     logger.info("Start test " + m.getName() + " with parameters " + Arrays.asList(p));
   }
 
-  public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+  private boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
     MantisConnectPortType mcp = app.soapMethods().getMantisConnect();
     IssueData issueData = mcp.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issueId));
     if (issueData.getStatus().getName().equals("resolved")) {
@@ -49,7 +49,7 @@ public class CommonMethods {
     }
   }
 
-  public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+  void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
     if (isIssueOpen(issueId)) {
       System.out.println("Ignored because of issue " + issueId);
       throw new SkipException("Ignored because of issue " + issueId);
