@@ -1,8 +1,8 @@
 package Lecture22.addressbook.tests;
 
 import Lecture22.addressbook.objects.Contact;
+import Lecture22.addressbook.objects.Contacts;
 import Lecture22.addressbook.objects.Group;
-import Lecture22.addressbook.objects.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -17,7 +17,7 @@ public class RemoveContactFromGroup extends CommonMethods {
       if (app.db().contactsWithoutGroups().size() == 0) {
         app.contactMethods().create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
       }
-      if (app.db().groupsWithoutContacts().size() == 0) {
+      if (app.db().groups().size() == 0) {
         app.goTo().GroupPage();
         app.groupMethods().create(new Group().withName("testRemovingContactFromGroup"), app);
         app.goTo().returnHome();
@@ -31,12 +31,14 @@ public class RemoveContactFromGroup extends CommonMethods {
 
   @Test
   public void testRemovingContactFromGroup() {
+    Contacts contactsBefore = app.db().contacts();
     Contact modifiedContact = app.db().contactsWithGroups().iterator().next();
-    Groups contactGroupsBefore = new Groups(modifiedContact.getGroups());
-    Group modifiedGroup = contactGroupsBefore.iterator().next();
+    Group modifiedGroup = modifiedContact.getGroups().iterator().next();
     app.contactMethods().removeFromGroup(modifiedContact, modifiedGroup);
     app.contactMethods().assertRemoving(modifiedContact);
-    Groups contactGroupsAfter = new Groups(modifiedContact.getGroups());
-    assertThat(contactGroupsAfter, equalTo(contactGroupsBefore.withAdded(modifiedGroup)));
+    Contacts contactsAfter = app.db().contacts();
+    assertThat(contactsAfter.iterator().next().getGroups(), equalTo
+            (contactsBefore.iterator().next().getGroups().without(modifiedGroup)));
+
   }
 }
