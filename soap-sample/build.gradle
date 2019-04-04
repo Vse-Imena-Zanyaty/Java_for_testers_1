@@ -6,7 +6,6 @@ repositories {
 
 dependencies {
     compile("org.testng:testng:7.0.0-beta3")
-    compile("ru.lanwen.verbalregex:java-verbal-expressions:1.6")
     compile("org.hamcrest:hamcrest:2.1")
 }
 

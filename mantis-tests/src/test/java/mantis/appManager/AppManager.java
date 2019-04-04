@@ -22,6 +22,7 @@ public class AppManager {
   private MailServer mailServer;
   private JamesServer jamesServer;
   private DatabaseManager databaseManager;
+  private SoapMethods soapMethods;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -100,6 +101,13 @@ public class AppManager {
       jamesServer = new JamesServer(this);
     }
     return jamesServer;
+  }
+
+  public SoapMethods soapMethods() {
+    if (soapMethods == null) {
+      soapMethods = new SoapMethods(this);
+    }
+    return soapMethods;
   }
 
   public DatabaseManager db() {

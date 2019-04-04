@@ -20,16 +20,19 @@ public class User {
   private String email;
 
 
-  public void withID(int ID) {
+  public User withID(int ID) {
     this.ID = ID;
+    return this;
   }
 
-  public void withUsername(String username) {
+  public User withUsername(String username) {
     this.username = username;
+    return this;
   }
 
-  public void withEmail(String email) {
+  public User withEmail(String email) {
     this.email = email;
+    return this;
   }
 
   public int getID() {
