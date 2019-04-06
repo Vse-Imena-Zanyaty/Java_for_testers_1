@@ -3,8 +3,8 @@
 <suite name="Suite1" verbose="1" >
     <test name="Groups" >
         <classes>
-            <class name="Lecture22.addressbook.tests.GroupCreation" />
-            <class name="Lecture22.addressbook.tests.GroupModification" />
+<!--            <class name="Lecture22.addressbook.tests.GroupCreation" />
+            <class name="Lecture22.addressbook.tests.GroupModification" />-->
             <class name="Lecture22.addressbook.tests.GroupDeletion" />
         </classes>
     </test>
