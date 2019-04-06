@@ -18,7 +18,6 @@ public class RemoveContactFromGroup extends CommonMethods {
         app.contactMethods().create(new Contact().withFirstName("first_name").withLastName("last_name"), app);
       }
       if (app.db().groups().size() == 0) {
-        app.goTo().GroupPage();
         app.groupMethods().create(new Group().withName("testRemovingContactFromGroup"), app);
         app.goTo().returnHome();
       }

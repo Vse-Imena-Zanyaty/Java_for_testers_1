@@ -26,7 +26,6 @@ public class ContactCreation extends CommonMethods {
   @BeforeMethod
   public void ensurePreconditions() {
     if (app.db().groups().size() == 0) {
-      app.goTo().GroupPage();
       app.groupMethods().create(new Group().withName("testContactCreation"), app);
       app.goTo().homePage();
     }
