@@ -21,6 +21,7 @@ public class RemoveContactFromGroup extends CommonMethods {
         app.groupMethods().create(new Group().withName("testRemovingContactFromGroup"), app);
         app.goTo().returnHome();
       }
+      app.goTo().returnHome();
       Contact modifiedContact = app.db().contactsWithoutGroups().iterator().next();
       Group modifiedGroup = app.db().groupsWithoutContacts().iterator().next();
       app.contactMethods().addToGroup(modifiedContact, modifiedGroup);
