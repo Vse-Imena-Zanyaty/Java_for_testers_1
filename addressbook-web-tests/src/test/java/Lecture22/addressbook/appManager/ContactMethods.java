@@ -106,7 +106,8 @@ public class ContactMethods extends BasicMethods {
     app.goTo().returnHome();
   }
 
-  public void addToGroup(Contact contact, Group group) {
+  public void addToGroup(Contact contact, Group group, AppManager app) {
+    app.goTo().returnHome();
     new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
     selectByID(contact.getID());
     wd.findElement(By.name("to_group")).click();
@@ -116,7 +117,8 @@ public class ContactMethods extends BasicMethods {
     contactCache = null;
   }
 
-  public void removeFromGroup(Contact contact, Group group) {
+  public void removeFromGroup(Contact contact, Group group, AppManager app) {
+    app.goTo().returnHome();
     new Select(wd.findElement(By.name("group"))).selectByValue("" + group.getID() + "");
     selectByID(contact.getID());
     wd.findElement(By.name("remove")).click();

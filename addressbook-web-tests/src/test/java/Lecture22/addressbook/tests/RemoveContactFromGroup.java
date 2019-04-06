@@ -21,10 +21,9 @@ public class RemoveContactFromGroup extends CommonMethods {
         app.groupMethods().create(new Group().withName("testRemovingContactFromGroup"), app);
         app.goTo().returnHome();
       }
-      app.goTo().returnHome();
       Contact modifiedContact = app.db().contactsWithoutGroups().iterator().next();
       Group modifiedGroup = app.db().groupsWithoutContacts().iterator().next();
-      app.contactMethods().addToGroup(modifiedContact, modifiedGroup);
+      app.contactMethods().addToGroup(modifiedContact, modifiedGroup, app);
       app.contactMethods().assertAdding(modifiedContact);
     }
   }
@@ -34,8 +33,7 @@ public class RemoveContactFromGroup extends CommonMethods {
     Contacts contactsBefore = app.db().contacts();
     Contact modifiedContact = app.db().contactsWithGroups().iterator().next();
     Group modifiedGroup = modifiedContact.getGroups().iterator().next();
-    app.goTo().returnHome();
-    app.contactMethods().removeFromGroup(modifiedContact, modifiedGroup);
+    app.contactMethods().removeFromGroup(modifiedContact, modifiedGroup, app);
     app.contactMethods().assertRemoving(modifiedContact);
     Contacts contactsAfter = app.db().contacts();
     assertThat(contactsAfter.iterator().next().getGroups(), equalTo

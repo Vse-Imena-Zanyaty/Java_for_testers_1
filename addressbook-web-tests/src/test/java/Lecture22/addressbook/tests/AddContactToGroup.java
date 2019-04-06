@@ -27,7 +27,7 @@ public class AddContactToGroup extends CommonMethods {
     Contacts contactsBefore = app.db().contacts();
     Contact modifiedContact = app.db().contactsWithoutGroups().iterator().next();
     Group modifiedGroup = app.db().groups().iterator().next();
-    app.contactMethods().addToGroup(modifiedContact, modifiedGroup);
+    app.contactMethods().addToGroup(modifiedContact, modifiedGroup, app);
     app.contactMethods().assertAdding(modifiedContact);
     Contacts contactsAfter = app.db().contacts();
     assertThat(contactsAfter.iterator().next().getGroups(), equalTo
