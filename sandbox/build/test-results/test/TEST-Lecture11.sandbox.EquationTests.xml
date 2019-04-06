@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Lecture11.sandbox.EquationTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-04-06T15:01:18" hostname="SPBNB-PRC1839" time="0.01">
+  <properties/>
+  <testcase name="test0" classname="Lecture11.sandbox.EquationTests" time="0.007"/>
+  <testcase name="test1" classname="Lecture11.sandbox.EquationTests" time="0.0"/>
+  <testcase name="test2" classname="Lecture11.sandbox.EquationTests" time="0.0"/>
+  <testcase name="testConstant" classname="Lecture11.sandbox.EquationTests" time="0.0"/>
+  <testcase name="testLinear" classname="Lecture11.sandbox.EquationTests" time="0.0"/>
+  <testcase name="testZero" classname="Lecture11.sandbox.EquationTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
